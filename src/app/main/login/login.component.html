@@ -8,7 +8,7 @@
     <input type="password" id="password" name="password" placeholder='password' formControlName="password"><br>
     <button type="submit" class="buttonCustom" >{{'enviar'| translate}}</button>
   </form>
-  <a class="alogin" routerLink="forgetpass">{{'forgotpass' | translate}}</a>
+  <a class="alogin" [routerLink]="['/forgetpass']">{{'forgotpass' | translate}}</a>
   <h3>{{'forgetpassmensage2' | translate}}</h3>
-  <a class="alogin" routerLink="registro">{{'registrarse' | translate}}</a>
+  <a class="alogin" [routerLink]="['/registro']">{{'registrarse' | translate}}</a>
 </div>

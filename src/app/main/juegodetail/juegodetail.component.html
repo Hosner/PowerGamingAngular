@@ -22,11 +22,11 @@
     {{'resultados.idJuego' | translate}}
   </div>
 
-  <div *ngIf="_dataService.usuarioLoggeado !== null">
-    <div *ngIf="juego.existeEnBiblioteca">
+  <div *ngIf="_dataService.usuarioLoggeado">
+    <div *ngIf="juego.existeEnBiblioteca === true">
       <p class="a">{{'anhadido' | translate}}</p>
     </div>
-    <div *ngIf="!juego.existeEnBiblioteca">
+    <div *ngIf="juego.existeEnBiblioteca === false">
       <a class="a">
         <button (click)="addJuego(juego.idJuego)">{{'addBiblioteca' | translate}}</button>
       </a>
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div *ngIf="_dataService.usuarioLoggeado != null">
+  <div *ngIf="_dataService.usuarioLoggeado">
     <div class="comentario">
       <form [formGroup]="controlAddComentario" (ngSubmit)="OnSubmitComentario()">
         <p>{{'juegomensage' | translate}} {{_dataService.usuarioLoggeado.nombreUser}} :</p>
@@ -70,7 +70,7 @@
   <div class="comentarios">
     <div *ngIf="comentarios.size !== 0 && true">
       <div *ngFor="let comentario of comentarios | keyvalue">
-        <div *ngIf="comentario.value.comentario !== null && comentario.value.idJuego !== null">
+        <div *ngIf="!comentario.value.comentario && !comentario.value.idJuego">
           <div>
             <h3>{{comentario.key}}</h3>
             <p>{{comentario.value.fechaComentario}}</p>

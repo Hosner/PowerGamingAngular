@@ -6,11 +6,11 @@
       <img src="../../../../assets/img/icojuego/{{juego.idJuego}}.jpg" alt="{{juego.nombre}}"/>
       {{juego.nombre}}
     </a>
-    <div *ngIf="_dataService.usuarioLoggeado !== null">
-      <div *ngIf="juego.existeEnBiblioteca">
+    <div *ngIf="_dataService.usuarioLoggeado">
+      <div *ngIf="juego.existeEnBiblioteca === true">
         <p class="a">{{'anhadido' | translate}}</p>
       </div>
-      <div *ngIf="!juego.existeEnBiblioteca">
+      <div *ngIf="juego.existeEnBiblioteca === false">
         <a class="a" ><button (click)="addJuego(juego.idJuego)">{{'addBiblioteca' | translate}}</button></a>
       </div>
     </div>

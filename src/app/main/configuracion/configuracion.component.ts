@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NetworkService} from "../../shared/servicios/network.service";
 import {Entrada} from "../../shared/model/entrada";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-configuracion',
@@ -14,17 +15,22 @@ export class ConfiguracionComponent implements OnInit,OnDestroy {
   controlMyAccount: FormGroup;
   private subscriptions: Subscription = new Subscription();
   constructor(private _dataService: DataService,
-              private _networkService: NetworkService) { }
+              private _networkService: NetworkService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.controlMyAccount = new FormGroup({
-      nombre: new FormControl('',[Validators.required, Validators.maxLength(45),Validators.minLength(3)]),
-      apellido1: new FormControl('',[Validators.maxLength(45),Validators.minLength(3)]),
-      apellido2: new FormControl('',[Validators.maxLength(45),Validators.minLength(3)]),
-      password:new FormControl('',[Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
-      telefono: new FormControl('',[Validators.minLength(9),Validators.maxLength(30)]),
-      nombreUser: new FormControl('',[Validators.required])
-    })
+    if (this._dataService.usuarioLoggeado) {
+      this.controlMyAccount = new FormGroup({
+        nombre: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(3)]),
+        apellido1: new FormControl('', [Validators.maxLength(45), Validators.minLength(3)]),
+        apellido2: new FormControl('', [Validators.maxLength(45), Validators.minLength(3)]),
+        password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
+        telefono: new FormControl('', [Validators.minLength(9), Validators.maxLength(30)]),
+        nombreUser: new FormControl('', [Validators.required])
+      })
+    }else{
+      this.router.navigate(['/error']);
+    }
   }
 
   ngOnDestroy() {

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TranslateModule} from "@ngx-translate/core";
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    NgbPaginationModule
   ]
 })
 export class BibliotecaModule { }

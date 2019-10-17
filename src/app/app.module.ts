@@ -15,10 +15,8 @@ import {ContactoComponent} from './main/contacto/contacto.component';
 import {FooterComponent} from './shared/footer/footer.component';
 import {HeaderComponent} from './shared/header/header.component';
 import {JuegodetailComponent} from './main/juegodetail/juegodetail.component';
-import {ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BuscadorModule} from './main/inicio/buscador/buscador.module';
-import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {HeaderModule} from './shared/header/header.module';
 import {FooterModule} from './shared/footer/footer.module';
 import {InicioModule} from './main/inicio/inicio.module';
@@ -33,6 +31,8 @@ import {ContactoModule} from './main/contacto/contacto.module';
 import {NotificationModule} from './shared/notification/notification.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {NotificationComponent} from './shared/notification/notification.component';
+import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+import {ReactiveFormsModule} from "@angular/forms";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -55,10 +55,8 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     ErrorModule,
     LoadingModule,
-    ReactiveFormsModule,
     CommonModule,
     BuscadorModule,
-    NgbPaginationModule,
     HeaderModule,
     FooterModule,
     InicioModule,
@@ -79,6 +77,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgbPaginationModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [NotificationComponent],
   providers: [],

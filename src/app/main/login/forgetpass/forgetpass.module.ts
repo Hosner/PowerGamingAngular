@@ -7,7 +7,7 @@ import {ChangepassComponent} from "./changepass/changepass.component";
     ChangepassComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class ForgetpassModule { }

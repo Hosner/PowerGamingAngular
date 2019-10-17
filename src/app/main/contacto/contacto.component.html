@@ -1,5 +1,5 @@
 <section style="margin: 150px;">
-  <div *ngIf="_dataService.usuarioLoggeado === null">
+  <div *ngIf="!_dataService.usuarioLoggeado">
     <form [formGroup]="contactoForm" (ngSubmit)="OnSubmit()">
       <p>{{'contactomensage' | translate}}</p>
       <input type="email" name="email"
@@ -12,7 +12,7 @@
       <input type="submit" value="{{'enviar' | translate}}"/>
     </form>
   </div>
-  <div *ngIf="_dataService.usuarioLoggeado !== null">
+  <div *ngIf="_dataService.usuarioLoggeado">
     <form [formGroup]="contactoForm" (ngSubmit)="OnSubmit()">
       <p>{{'contactomensage3' | translate}} : {{_dataService.usuarioLoggeado.nombreUser}}<br>
         {{'contactomensage2' | translate}}</p>

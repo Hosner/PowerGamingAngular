@@ -6,9 +6,42 @@ body{
   color:black;
   font-family: 'Oswald', sans-serif;
 }
+
 a{
   color:white;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.idiomaEs{
+  background-color: transparent;
+  background-image: url("src/assets/img/es.png");
+  background-repeat:no-repeat;
+  height: 30px !important;
+  width: 35px !important;
+  padding: 0 0;
+  cursor: pointer;
+}
+.idiomaEn{
+  background-color: transparent;
+  border: transparent;
+  background-image: url("src/assets/img/en-us.png");
+  background-repeat:no-repeat;
+  height: 30px !important;
+  width: 35px !important;
+  padding: 0 0;
+  cursor: pointer;
+}
+input.enlace{
+  border:0;
+  width: 75px;
+  background-color:transparent;
+  color:white;
+  cursor:pointer;
+}
+
+input.enlace:hover{
+  color:#f00;
 }
 
 header{
@@ -32,7 +65,7 @@ header p{
   display: inline-block;
 }
 nav{
-  width: 30%;
+  width: 50%;
   float: left;
   height: 100%;
 
@@ -46,9 +79,22 @@ nav{
   padding-left: 4%;
   padding-right: 4%;
 }
+ul{
+  width: 100%;
+}
 .nav a{
   font: 1em sans-serif;
   color: azure;
+
+  cursor: hand;
+}
+.nav a:hover{
+  color: #f00;
+  text-decoration: none;
+}
+a:hover{
+  color: #f00;
+  text-decoration: none;
 }
 .menu{
   width: 100%;

@@ -5,6 +5,7 @@ import {RegistroComponent} from "./registro/registro.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {ReactiveFormsModule} from "@angular/forms";
 
+
 @NgModule({
   declarations: [
     ForgetpassComponent,
@@ -13,7 +14,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ]
 })
 export class LoginModule { }

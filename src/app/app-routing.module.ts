@@ -9,9 +9,11 @@ import {JuegodetailComponent} from './main/juegodetail/juegodetail.component';
 import {BuscadorPageComponent} from './main/inicio/buscador/buscador-page/buscador-page.component';
 import {ForgetpassComponent} from './main/login/forgetpass/forgetpass.component';
 import {RegistroComponent} from './main/login/registro/registro.component';
+import {ErrorComponent} from "./shared/error/error.component";
 
 
 const routes: Routes = [
+  {path: '', component: InicioComponent},
   {path: 'inicio', component: InicioComponent},
   {path: 'login', component: LoginComponent},
   {path: 'configuracion', component: ConfiguracionComponent},
@@ -23,7 +25,8 @@ const routes: Routes = [
   {path: 'detalle/:id', component: JuegodetailComponent},
   {path: 'buscador-page', component: BuscadorPageComponent},
   {path: 'forgetpass', component: ForgetpassComponent},
-  {path: 'registro', component: RegistroComponent}
+  {path: 'registro', component: RegistroComponent},
+  {path: 'error', component: ErrorComponent}
 ];
 
 @NgModule({
