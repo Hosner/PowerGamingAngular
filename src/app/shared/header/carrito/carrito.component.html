@@ -1,0 +1,35 @@
+<!--<div (onmouseover)="ver(5)" (onmouseout)="ocultar(5)" id="carrito">
+  <img src="../assets/img/carrito.png" alt="carrito">
+  <div id="meumenudes5" class="menudes-contido2" *ngIf="carrito != null">
+    <div class="lineacarrito" *ngFor="let lineaCarrito of carrito.lineaCarrito"></div>
+    <img src="../assets/img/icojuego/{{lineaCarrito.edicion.idJuego}}.jpg" alt="{{lineaCarrito.edicion.idJuego}}"/>
+    <div class="edicion">
+      <div *ngFor="let formato of _dataService.formatos">
+        <div *ngIf="formato.idFormato === lineaCarrito.edicion.idFormato">
+          <p>{{formato.nombre}}</p>
+        </div>
+      </div>
+      <div *ngfor="let tipoEdicion of _dataService.tipoEdiciones">
+        <div *ngIf="tipoEdicion.idTipoEdicion === lineaCarrito.edicion.idTipoEdicion">
+          <p>{{tipoEdicion.nombre}}</p>
+        </div>
+      </div>
+      {{'precio' | translate}} {{lineaCarrito.edicion.precio}} </div>
+    <a class="a3" (click)="deleteCarrito(lineaCarrito.edicion.id)">X</a>
+  </div>
+  <hr>
+</div>
+<div class="carritofinal">
+  <div>Total: {{carrito.total}}</div>
+  <div *ngIf="_dataService.usuarioLoggeado !== null">
+    <a href="">
+      <button>{{'guardarpedido' | translate}}</button>
+    </a>
+  </div>
+  <div *ngIf="_dataService.usuarioLoggeado === null">
+    <p>{{'carritomensage' | translate}}</p>
+    <a routerLink="login">
+      <button>{{'entrar' | translate}}</button>
+    </a>
+  </div>
+</div>-->

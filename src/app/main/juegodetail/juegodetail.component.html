@@ -1,0 +1,91 @@
+<section class="sjuego">
+  <img src="../../../../assets/img/icojuego/{{juego.idJuego}}.jpg" alt="{{juego.nombre}}"/>
+  <div class="juegotitle">
+    <h1>{{juego.nombre}}</h1>
+    <p>{{'puntuacion' | translate}} : {{juego.puntuacionMedia}}</p>
+  </div>
+  <div>
+    <video src="../../../../assets/img/icojuego/{{juego.idJuego}}.mp4" width="640" height="480" controls></video>
+  </div>
+  <div>
+    {{'fechalanzamiento' | translate}} : {{juego.fechaLanzamiento}}<br>
+    {{'creador' | translate}} : {{juego.nombreCreador}}<br>
+    {{'categorias' | translate}} :
+    <div *ngFor="let categoria of juego.categoria">{{categoria.nombre}},</div>
+    <br>
+    {{'plataformadisponible' | translate}} :
+    <div *ngFor="let plataforma of juego.plataformas">{{plataforma.nombre}},</div>
+    <br>
+    {{'idiomadisponible' | translate}} :
+    <div *ngFor="let idioma of juego.idiomas">{{idioma.nombre}},</div>
+    <br>
+    {{'resultados.idJuego' | translate}}
+  </div>
+
+  <div *ngIf="_dataService.usuarioLoggeado !== null">
+    <div *ngIf="juego.existeEnBiblioteca">
+      <p class="a">{{'anhadido' | translate}}</p>
+    </div>
+    <div *ngIf="!juego.existeEnBiblioteca">
+      <a class="a">
+        <button (click)="addJuego(juego.idJuego)">{{'addBiblioteca' | translate}}</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="addCarrito">
+    <div *ngIf="juego.ediciones">
+      <form [formGroup]="controlAddCarrito" (ngSubmit)="OnSubmitCarrito(juego.ediciones)">
+        <select formControlName="edicion">
+          <div *ngFor="let edicion of juego.ediciones">
+            <option value="{{edicion.id}}">
+              {{'formato' | translate}}
+              <div *ngFor="let formato of _dataService.formatos">
+                <div *ngIf="formato.idFormato === edicion.idFormato">{{formato.nombre}}</div>
+              </div>
+              {{'tipoedicion' | translate}}
+              <div *ngFor="let tipoEdicion of _dataService.tipoEdiciones">
+                <div *ngIf="tipoEdicion.idTipoEdicion === edicion.idTipoEdicion">{{tipoEdicion.nombre}}</div>
+              </div>
+              {{'precio' | translate}} : {{edicion.precio}}
+            </option>
+            <br>
+          </div>
+        </select>
+        <input class="buttoncolor" type="submit" value="{{'addcarrito' | translate}}"/>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="_dataService.usuarioLoggeado != null">
+    <div class="comentario">
+      <form [formGroup]="controlAddComentario" (ngSubmit)="OnSubmitComentario()">
+        <p>{{'juegomensage' | translate}} {{_dataService.usuarioLoggeado.nombreUser}} :</p>
+        <textarea rows="10" cols="50" name="comentario"></textarea>
+        <input class="buttoncolor" type="submit" name="modificar" value="{{'modificar' | translate}}"/>
+      </form>
+    </div>
+  </div>
+
+  <div class="comentarios">
+    <div *ngIf="comentarios.size !== 0 && true">
+      <div *ngFor="let comentario of comentarios | keyvalue">
+        <div *ngIf="comentario.value.comentario !== null && comentario.value.idJuego !== null">
+          <div>
+            <h3>{{comentario.key}}</h3>
+            <p>{{comentario.value.fechaComentario}}</p>
+            <p>{{comentario.value.comentario}}</p>
+          </div>
+        </div>
+      </div>
+      <ngb-pagination
+        [(page)]="_dataService.page"
+        [pageSize]="_dataService.pageSize"
+        [collectionSize]="comentarios.size"
+        [rotate]="true"
+        [ellipses]="false"
+        [boundaryLinks]="true">
+      </ngb-pagination>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+footer{
+  height: 250px;
+  width: 100%;
+  background-color: black;
+  color: azure;
+  bottom: 0;
+  display: block;
+}

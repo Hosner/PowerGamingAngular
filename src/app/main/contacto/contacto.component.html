@@ -1,0 +1,23 @@
+<section style="margin: 150px;">
+  <div *ngIf="_dataService.usuarioLoggeado === null">
+    <form [formGroup]="contactoForm" (ngSubmit)="OnSubmit()">
+      <p>{{'contactomensage' | translate}}</p>
+      <input type="email" name="email"
+             formControlName="email"
+             placeholder="usuario@ejemplo.com"
+             required
+             minlength="8" maxlength="75"/>
+      <p>{{'contactomensage2' | translate}}</p>
+      <textarea formControlName="mensage" name="mensage" rows="10" cols="50"></textarea><br>
+      <input type="submit" value="{{'enviar' | translate}}"/>
+    </form>
+  </div>
+  <div *ngIf="_dataService.usuarioLoggeado !== null">
+    <form [formGroup]="contactoForm" (ngSubmit)="OnSubmit()">
+      <p>{{'contactomensage3' | translate}} : {{_dataService.usuarioLoggeado.nombreUser}}<br>
+        {{'contactomensage2' | translate}}</p>
+      <textarea formControlName="mensage" name="mensage" rows="10" cols="50"></textarea><br>
+      <input class="buttoncolor" type="submit" value="{{'enviar' | translate}}" />
+    </form>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<header>
+  <img class="menufig" src="../assets/img/powergaminglogo.png">
+  <app-languaje></app-languaje>
+  <nav>
+    <ul>
+      <li><a [routerLink]="['/inicio']">inicio</a></li>
+      <li *ngIf="_dataService.usuarioLoggeado === null "><a [routerLink]="['/login']">entrar</a></li>
+      <li *ngIf="_dataService.usuarioLoggeado !== null "><a [routerLink]="['/configuracion']">configuracion</a></li>
+      <li *ngIf="_dataService.usuarioLoggeado !== null"><a [routerLink]="['/biblioteca']">biblioteca</a></li>
+      <li *ngIf="_dataService.usuarioLoggeado !== null "><a (click)="logOut()">salir</a></li>
+    </ul>
+  </nav>
+
+</header>

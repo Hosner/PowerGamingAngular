@@ -1,0 +1,26 @@
+<app-buscador></app-buscador>
+<section class="biblioteca">
+  <h2>{{'resultados' | translate}}</h2>
+  <div *ngFor="let juego of juegosSearch | slice: (_dataService.page-1) * _dataService.pageSize : (_dataService.page-1) * _dataService.pageSize + _dataService.pageSize">
+    <a class="a2" [routerLink]="['detalle/'+juego.idJuego]">
+      <img src="../../../../assets/img/icojuego/{{juego.idJuego}}.jpg" alt="{{juego.nombre}}"/>
+      {{juego.nombre}}
+    </a>
+    <div *ngIf="_dataService.usuarioLoggeado !== null">
+      <div *ngIf="juego.existeEnBiblioteca">
+        <p class="a">{{'anhadido' | translate}}</p>
+      </div>
+      <div *ngIf="!juego.existeEnBiblioteca">
+        <a class="a" ><button (click)="addJuego(juego.idJuego)">{{'addBiblioteca' | translate}}</button></a>
+      </div>
+    </div>
+  </div>
+  <ngb-pagination
+    [(page)]="_dataService.page"
+    [pageSize]="_dataService.pageSize"
+    [collectionSize]="juegosSearch.length"
+    [rotate]="true"
+    [ellipses]="false"
+    [boundaryLinks]="true">
+  </ngb-pagination>
+</section>
