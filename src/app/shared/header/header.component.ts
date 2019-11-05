@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    let entrada = new Entrada();
+   /* let entrada = new Entrada();
     entrada.IdLogin = this._dataService.usuarioLoggeado.idLogin;
     this._networkService.sendRequest("Usuario",entrada,"Logout").subscribe(respuesta =>{
       if(respuesta.Status === "OK"){
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
       }else{
 
       }
-    }).unsubscribe();
+    }).unsubscribe();*/
   }
 
 

@@ -15,6 +15,7 @@ a{
 
 .idiomaEs{
   background-color: transparent;
+  border: transparent;
   background-image: url("src/assets/img/es.png");
   background-repeat:no-repeat;
   height: 30px !important;
@@ -214,6 +215,7 @@ section{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   padding: 10px;
+  top: 150px;
 }
 .menu-search2{
   background-color:#000;
@@ -225,6 +227,7 @@ section{
   z-index: 1;
   left: 290px;
   padding: 10px;
+  top: 150px;
 }
 .menu-search3{
   background-color:#000;
@@ -236,6 +239,7 @@ section{
   z-index: 1;
   left: 390px;
   padding: 10px;
+  top: 150px;
 }
 .menudes-contido2 {
   display: none;

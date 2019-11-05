@@ -8,6 +8,7 @@ import {Plataforma} from "../model/plataforma";
 import {Idioma} from "../model/idioma";
 import {Formato} from "../model/formato";
 import {Tipoedicion} from "../model/tipoedicion";
+import {Entrada} from "../model/entrada";
 
 /**
  * Servicio para los datos compartidos
@@ -40,6 +41,8 @@ export class DataService {
 
     public pageSize: 3;
     public page: 1;
+
+    public entrada:Entrada;
 
     constructor() {
 

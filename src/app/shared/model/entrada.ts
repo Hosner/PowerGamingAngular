@@ -9,7 +9,11 @@ import {Usuario} from "./usuario";
 import {Itembiblioteca} from "./itembiblioteca";
 
 export class Entrada {
+  MetodoPeticion: string;
+  Action: string;
+
   Nombre?:string;
+
   Categorias?:Categoria[];
   Creador?:Creador;
   Plataforma?:Plataforma;

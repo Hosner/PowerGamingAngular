@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   servers: {
-    urlPowerGaming: '//localhost:8080/PowerGamingWeb/power_gaming',
+    urlPowerGaming: 'http://localhost:8080/PowerGamingService/power_gaming',
   }
 };
 

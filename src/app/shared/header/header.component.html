@@ -7,7 +7,7 @@
       <li *ngIf="!_dataService.usuarioLoggeado"><a [routerLink]="['/login']">entrar</a></li>
       <li *ngIf="_dataService.usuarioLoggeado"><a [routerLink]="['/configuracion']">configuracion</a></li>
       <li *ngIf="_dataService.usuarioLoggeado"><a [routerLink]="['/biblioteca']">biblioteca</a></li>
-      <li *ngIf="!_dataService.usuarioLoggeado"><input class="enlace" (click)="logOut()" value="salir"/></li>
+      <li *ngIf="_dataService.usuarioLoggeado"><input class="enlace" (click)="logOut()" value="salir"/></li>
     </ul>
   </nav>
 

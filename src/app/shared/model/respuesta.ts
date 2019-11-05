@@ -1,14 +1,9 @@
 import {Juego} from "./juego";
 import {Usuario} from "./usuario";
-import {Provincia} from "./provincia";
 import {Pais} from "./pais";
-import {Creador} from "./creador";
-import {Idioma} from "./idioma";
-import {Plataforma} from "./plataforma";
-import {Categoria} from "./categoria";
 import {Itembiblioteca} from "./itembiblioteca";
-import {Tipoedicion} from "./tipoedicion";
-import {Formato} from "./formato";
+import {Datosprecargajuego} from "./datosprecargajuego";
+
 
 /**
  * Objecto de la respuesta que nos devuelve back
@@ -18,14 +13,10 @@ export interface Respuesta {
     StatusMsg: string;
 
     //DatosPrecargados
-    Provincias?:Provincia[];
     Pais?:Pais[];
-    Categorias?:Categoria[];
-    Creadores?:Creador[];
-    Idiomas?:Idioma[];
-    Plataformas?:Plataforma[];
-    Formatos?:Formato[];
-    TipoEdiciones?:Tipoedicion[];
+
+    DatosPrecargaJuego?: Datosprecargajuego;
+
 
     Valoracion?:Juego[];
     Todos?:Juego[];

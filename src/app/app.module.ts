@@ -4,71 +4,61 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ErrorModule} from './shared/error/error.module';
-import {LoadingModule} from './shared/loading/loading.module';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {InicioComponent} from './main/inicio/inicio.component';
-import {LoginComponent} from './main/login/login.component';
-import {ConfiguracionComponent} from './main/configuracion/configuracion.component';
-import {BibliotecaComponent} from './main/biblioteca/biblioteca.component';
-import {ContactoComponent} from './main/contacto/contacto.component';
+import {InicioComponent} from './inicio/inicio.component';
+
+
 import {FooterComponent} from './shared/footer/footer.component';
 import {HeaderComponent} from './shared/header/header.component';
-import {JuegodetailComponent} from './main/juegodetail/juegodetail.component';
+
 import {CommonModule} from '@angular/common';
-import {BuscadorModule} from './main/inicio/buscador/buscador.module';
 import {HeaderModule} from './shared/header/header.module';
 import {FooterModule} from './shared/footer/footer.module';
-import {InicioModule} from './main/inicio/inicio.module';
-import {RegistroModule} from './main/login/registro/registro.module';
-import {ConfiguracionModule} from './main/configuracion/configuracion.module';
-import {LoginModule} from './main/login/login.module';
-import {JuegodetailModule} from './main/juegodetail/juegodetail.module';
-import {ForgetpassModule} from './main/login/forgetpass/forgetpass.module';
-import {BibliotecaModule} from './main/biblioteca/biblioteca.module';
-import {ChangepassModule} from './main/login/forgetpass/changepass/changepass.module';
-import {ContactoModule} from './main/contacto/contacto.module';
-import {NotificationModule} from './shared/notification/notification.module';
+import {InicioModule} from './inicio/inicio.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {NotificationComponent} from './shared/notification/notification.component';
-import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+
 import {ReactiveFormsModule} from "@angular/forms";
+import { StoreModule } from '@ngrx/store';
+import {routerReducer, RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import {environment} from "../environments/environment";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RespuestaEffects } from './ngrx/respuesta-effects.service';
+import { EntityDataModule } from '@ngrx/data';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {LoginModule} from "./login/login.module";
+import {LoginComponent} from "./login/login.component";
+import * as respuestaReduces from "./ngrx/respuesta.reducer";
+import {NgxPaginationModule} from "ngx-pagination";
+import {BuscadorModule} from "./buscador/buscador.module";
+import {ContactoModule} from "./contacto/contacto.module";
+import {ContactoComponent} from "./contacto/contacto.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
-    LoginComponent,
-    ConfiguracionComponent,
-    BibliotecaComponent,
-    ContactoComponent,
-    JuegodetailComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ErrorModule,
-    LoadingModule,
     CommonModule,
-    BuscadorModule,
     HeaderModule,
     FooterModule,
     InicioModule,
-    RegistroModule,
-    ConfiguracionModule,
     LoginModule,
-    JuegodetailModule,
-    ForgetpassModule,
     ContactoModule,
-    ChangepassModule,
-    BibliotecaModule,
-    NotificationModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -77,10 +67,33 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgbPaginationModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(
+      {
+        router: routerReducer
+      },
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true
+        }
+      }
+    ),
+    StoreModule.forFeature(
+      respuestaReduces.respuestaReducer,
+      respuestaReduces.RespuestaReducer
+    ),
+    EffectsModule.forRoot([RespuestaEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot({routerState: RouterState.Minimal}),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot(),
+    EntityDataModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    BuscadorModule
   ],
-  entryComponents: [NotificationComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

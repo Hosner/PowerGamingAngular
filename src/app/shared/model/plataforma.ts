@@ -1,4 +1,4 @@
 export interface Plataforma {
-  IdPlataforma: number;
+  idPlataforma: number;
   nombre: string;
 }

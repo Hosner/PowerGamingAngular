@@ -26,7 +26,7 @@ export class NetworkService {
   /**
    * Servicio de back
    */
-  private readonly CONTROLLER_SERVICE: string = 'controller';
+  private readonly CONTROLLER_SERVICE: string = 'Controller';
 
   constructor(private httpClient: HttpClient,
               private _dataService: DataService) {
@@ -38,12 +38,12 @@ export class NetworkService {
    * @param entrada {Entrada} entrada de la peticion
    * @param action
    */
-  public sendRequest(metodoPeticion: string,entrada: Entrada,action: string): Observable<Respuesta> {
+  public sendRequest(entrada: Entrada): Observable<Respuesta> {
     const body: Peticion = {
       Servicio: this.CONTROLLER_SERVICE,
-      Metodo: metodoPeticion,
+      Metodo: entrada.MetodoPeticion,
       IdiomaWeb: this._dataService.idiomaWeb,
-      Action: action,
+      Action: entrada.Action,
       Entrada: entrada
     };
     return this.httpClient.post<Respuesta>(`${environment.servers.urlPowerGaming}`, body, httpOptions);
