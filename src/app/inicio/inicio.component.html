@@ -1,20 +1,21 @@
 <app-buscador></app-buscador>
-<div *ngIf="datosPrecarga$ | async as respuesta">
-  <section class="sectionjuegos">
-    <h2>{{'indextitle' | translate}}</h2>
-    <div *ngFor="let juego of respuesta.Todos  | paginate: { itemsPerPage: 3, currentPage: page} ">
-      <a class="a2" [routerLink]="['detalle/'+juego.idJuego]">
-        <img src="../../../../assets/img/icojuego/{{juego.idJuego}}.jpg" alt="{{juego.nombre}}"/>
-      </a>
-    </div>
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
-  </section>
-  <aside class="sectionjuegos">
-    <h2>{{'indextitle2' | translate}}</h2>
-    <div *ngFor="let juegoValoracion of respuesta.Valoracion">
-      <a class="a2" [routerLink]="['detalle/'+juegoValoracion.idJuego]">
-        <img src="../../../../assets/img/icojuego/{{juegoValoracion.idJuego}}.jpg" alt="{{juegoValoracion.nombre}}"/>
-      </a>
-    </div>
-  </aside>
-</div>
+  <div *ngIf="datosPrecarga$ | async as respuesta">
+    <section class="sectionjuegos">
+      <h2>{{'indextitle' | translate}}</h2>
+      <div *ngFor="let juego of respuesta.Todos  | paginate: { itemsPerPage: 3, currentPage: page} ">
+        <a class="a2" [routerLink]="['detalle/'+juego.idJuego]">
+          <img src="../../../../assets/img/icojuego/{{juego.idJuego}}.jpg" alt="{{juego.nombre}}"/>
+        </a>
+      </div>
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </section>
+    <aside class="sectionjuegos">
+      <h2>{{'indextitle2' | translate}}</h2>
+      <div *ngFor="let juegoValoracion of respuesta.Valoracion">
+        <a class="a2" [routerLink]="['detalle/'+juegoValoracion.idJuego]">
+          <img src="../../../../assets/img/icojuego/{{juegoValoracion.idJuego}}.jpg" alt="{{juegoValoracion.nombre}}"/>
+        </a>
+      </div>
+    </aside>
+  </div>
+

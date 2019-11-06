@@ -1,0 +1,23 @@
+<app-buscador></app-buscador>
+<section class="biblioteca">
+  <h2>{{'resultados' | translate}}</h2>
+  <div *ngIf="juegosSearch | async as juegos">
+    <div *ngFor="let juego of juegos | paginate: { itemsPerPage: 3, currentPage: page}">
+      <a class="a2" [routerLink]="['detalle/'+juego.idJuego]">
+        <img src="../../../../assets/img/icojuego/{{juego.idJuego}}.jpg" alt="{{juego.nombre}}"/>
+        {{juego.nombre}}
+      </a>
+      <div *ngIf="_dataService.usuarioLoggeado">
+        <div *ngIf="juego.existeEnBiblioteca === true">
+          <p class="a">{{'anhadido' | translate}}</p>
+        </div>
+        <div *ngIf="juego.existeEnBiblioteca === false">
+          <a class="a">
+            <button (click)="addJuego(juego.idJuego)">{{'addBiblioteca' | translate}}</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</section>

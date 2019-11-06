@@ -14,12 +14,10 @@ export class Entrada {
 
   Nombre?:string;
 
-  Categorias?:Categoria[];
-  Creador?:Creador;
-  Plataforma?:Plataforma;
-  Plataformas?:Plataforma[];
-  Idioma?:Idioma;
-  Idiomas?:Idioma[];
+  Categorias?:number[];
+  Creador?:string;
+  Plataformas?:number[];
+  Idiomas?:string[];
   Fecha?:string;
   IdJuego?:number;
   usuario?:Usuario;

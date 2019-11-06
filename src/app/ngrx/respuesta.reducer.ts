@@ -1,14 +1,16 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import * as RespuestaActions from "./respuesta.actions";
 import {Respuesta} from "../shared/model/respuesta";
+import {Juego} from "../shared/model/juego";
 
 export const respuestaReducer = 'respuestaReducer';
 
 export interface State{
-  respuesta: Respuesta;
+  respuesta?: Respuesta;
+  juegoSearch?: Juego[];
 }
 
-export const initialState: State = {respuesta: undefined};
+export const initialState: State = {respuesta: undefined, juegoSearch: undefined};
 
 const reducer = createReducer(
   initialState,
@@ -17,6 +19,13 @@ const reducer = createReducer(
     return {
       ...state,
       respuesta:  payload.success
+    }
+  }),
+  on(RespuestaActions.buscadorResultadoRespuesta, state => state),
+  on(RespuestaActions.buscadorResultadoSuccess, (state, payload) => {
+    return {
+      ...state,
+      juegoSearch:  payload.success
     }
   })
 );

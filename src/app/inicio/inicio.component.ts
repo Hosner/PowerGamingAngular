@@ -1,9 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {Store} from "@ngrx/store";
 import * as RespuestaActions from "../ngrx/respuesta.actions";
 import {State} from "../ngrx/respuesta.reducer";
 import {RespuestaService} from "../ngrx/respuesta.service";
+import {DataService} from "../shared/servicios/data.service";
+import {Juego} from "../shared/model/juego";
+import {Entrada} from "../shared/model/entrada";
 
 @Component({
   selector: 'app-inicio',
@@ -17,11 +20,13 @@ export class InicioComponent implements OnInit,OnDestroy {
 
   constructor(private store: Store<State>,
               private _translateService: TranslateService,
-              private _respuestaService: RespuestaService) {
+              private _respuestaService: RespuestaService,
+              private _dataService: DataService) {
   }
 
   ngOnInit() {
     this.store.dispatch(RespuestaActions.inicioDatosRespuesta());
   }
   ngOnDestroy() {}
+
 }

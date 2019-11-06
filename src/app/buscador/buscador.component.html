@@ -3,7 +3,7 @@
     <a (mouseover)="ver(1)" (mouseout)="ocultar(1)" class="dropbtn">{{'categoria' | translate}}
       <div id="meumenudes1" class="menu-search">
           <label class="container" *ngFor="let categoria of respuesta.DatosPrecargaJuego.Categorias">{{categoria.nombre}}
-            <input type="checkbox" formControlName="categorias" value="{{categoria.idCategoria}}"/><br>
+            <input type="checkbox" formControlName="categorias"  (click)="OnclickCategoria(categoria.idCategoria)"/><br>
             <span class="checkmark"></span>
           </label>
       </div>
@@ -16,7 +16,7 @@
     <a (mouseover)="ver(2)" (mouseout)="ocultar(2)" class="dropbtn">{{'plataforma' | translate}}
       <div id="meumenudes2" class="menu-search2">
           <label class="container" *ngFor="let plataforma of respuesta.DatosPrecargaJuego.Plataformas">{{plataforma.nombre}}
-            <input type="checkbox" formControlName="plataformas" value="{{plataforma.idPlataforma}}"/><br>
+            <input type="checkbox" formControlName="plataformas" (click)="OnclickPlataforma(plataforma.idPlataforma)"/><br>
             <span class="checkmark"></span>
           </label>
       </div>
@@ -24,7 +24,7 @@
     <a (mouseover)="ver(3)" (mouseout)="ocultar(3)" class="dropbtn">{{'idioma' | translate}}
       <div id="meumenudes3" class="menu-search3">
           <label class="container" *ngFor="let idioma of respuesta.DatosPrecargaJuego.Idiomas">{{idioma.nombre}}
-            <input type="checkbox" formControlName="idiomas" value="{{idioma.idIdioma}}"/><br>
+            <input type="checkbox" formControlName="idiomas" (click)="OnclickIdioma(idioma.idIdioma)"/><br>
             <span class="checkmark"></span>
           </label>
       </div>
@@ -54,15 +54,12 @@
       <option value="2000">2000</option>
     </select>
 
-    <div *ngFor="let juego of respuesta.Todos | filter: 'nombre': searchStr : false"></div>
-
     <input class="search" type="text"
            formControlName="nombre"
-           autocomplete="off" [(ngModel)]="searchStr"/>
+           autocomplete="off" />
 
     <button class="buttoncolor" type="submit">{{'buscar' | translate}}</button>
   </form>
 </div>
 
-<!--<app-buscador-page #hijo></app-buscador-page>-->
 

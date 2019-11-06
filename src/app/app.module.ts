@@ -34,6 +34,8 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {BuscadorModule} from "./buscador/buscador.module";
 import {ContactoModule} from "./contacto/contacto.module";
 import {ContactoComponent} from "./contacto/contacto.component";
+import {BuscadorPageModule} from "./buscador-page/buscador-page.module";
+import {BuscadorPageComponent} from "./buscador-page/buscador-page.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -47,7 +49,8 @@ export function createTranslateLoader(http: HttpClient) {
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    ContactoComponent
+    ContactoComponent,
+    BuscadorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     InicioModule,
     LoginModule,
     ContactoModule,
+    BuscadorPageModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
