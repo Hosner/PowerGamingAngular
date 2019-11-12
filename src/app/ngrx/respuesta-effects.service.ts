@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {concatMap, map} from "rxjs/operators";
+import {catchError, concatMap, map} from "rxjs/operators";
 import {Respuesta} from "../shared/model/respuesta";
 import * as RespuestaActions from ".//respuesta.actions";
 import {environment} from "../../environments/environment";
 import {DataService} from "../shared/servicios/data.service";
 import {Juego} from "../shared/model/juego";
+import {of} from "rxjs";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
@@ -52,12 +53,29 @@ export class RespuestaEffects {
         )
       )
     )
-  )
+  );
+
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RespuestaActions.loginRespuesta),
+      concatMap(() =>
+        this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
+          {
+            Servicio: this.CONTROLLER_SERVICE,
+            Metodo: 'Usuario',
+            IdiomaWeb: this._dataService.idiomaWeb,
+            Action: 'Login',
+            Entrada: this._dataService.entrada
+          },
+          httpOptions).pipe(
+            map(respuesta => RespuestaActions.loginRespuestaSuccess({success: respuesta}))
+        )
+      )
+    )
+  );
 
   constructor(private actions$: Actions,
               private http: HttpClient,
               private _dataService: DataService) {
   }
-
-
 }

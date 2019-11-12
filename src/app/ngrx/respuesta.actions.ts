@@ -7,15 +7,25 @@ export const inicioDatosRespuesta = createAction(
 );
 
 export const inicioDatosRespuestaSuccess = createAction(
-  '[PG] Success inicio datos',
+  '[InicioDatos] Success inicio datos',
   props<{ success: Respuesta }>()
 );
 
 export const buscadorResultadoRespuesta = createAction(
-  '[Inicio] Buscador Resultado ',
+  '[Busqueda] Buscador Resultado ',
 );
 
 export const buscadorResultadoSuccess = createAction(
-  '[PG] Success buscador resultado',
+  '[BusquedaDatos] Success buscador resultado',
   props<{ success: Juego[] }>()
 );
+
+export const loginRespuesta = createAction(
+  '[Login] Login Restultado'
+);
+
+export const loginRespuestaSuccess = createAction(
+  '[Login Datos] Success Login Resultado',
+  props<{ success: Respuesta}>()
+);
+

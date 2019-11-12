@@ -8,3 +8,7 @@ export const inicioDatosRespuesta = createSelector(respuestaState, (state: State
 export const buscadorResultadoState = createFeatureSelector<State>(respuestaReducer);
 
 export const buscadorResultadoRespuesta = createSelector(buscadorResultadoState, (state: State) => state.juegoSearch);
+
+export const loginResultadoState = createFeatureSelector<State>(respuestaReducer);
+
+export const loginResultadoRespuesta = createSelector(loginResultadoState, (state: State) => state.respuestaLogin);
