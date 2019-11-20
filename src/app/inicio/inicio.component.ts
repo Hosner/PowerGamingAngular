@@ -1,32 +1,27 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {Store} from "@ngrx/store";
-import * as RespuestaActions from "../ngrx/respuesta.actions";
-import {State} from "../ngrx/respuesta.reducer";
-import {RespuestaService} from "../ngrx/respuesta.service";
-import {DataService} from "../shared/servicios/data.service";
-import {Juego} from "../shared/model/juego";
-import {Entrada} from "../shared/model/entrada";
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {Store} from '@ngrx/store';
+import * as RespuestaActions from '../redux/respuesta.actions';
+import {State} from '../redux/respuesta.reducer';
+import {RespuestaService} from '../redux/respuesta.service';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InicioComponent implements OnInit,OnDestroy {
-  page: number = 1;
+export class InicioComponent implements OnInit{
+  page = 1;
 
-  datosPrecarga$ = this._respuestaService.inicioDatos();
+  datosPrecarga$ = this.respuestaService.inicioDatos();
 
   constructor(private store: Store<State>,
-              private _translateService: TranslateService,
-              private _respuestaService: RespuestaService,
-              private _dataService: DataService) {
+              private translateService: TranslateService,
+              private respuestaService: RespuestaService) {
   }
 
   ngOnInit() {
     this.store.dispatch(RespuestaActions.inicioDatosRespuesta());
   }
-  ngOnDestroy() {}
 
 }

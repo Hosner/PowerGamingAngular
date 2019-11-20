@@ -24,18 +24,20 @@ import {routerReducer, RouterState, StoreRouterConnectingModule} from '@ngrx/rou
 import { EffectsModule } from '@ngrx/effects';
 import {environment} from "../environments/environment";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RespuestaEffects } from './ngrx/respuesta-effects.service';
+import { RespuestaEffects } from './redux/respuesta-effects.service';
 import { EntityDataModule } from '@ngrx/data';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {LoginModule} from "./login/login.module";
 import {LoginComponent} from "./login/login.component";
-import * as respuestaReduces from "./ngrx/respuesta.reducer";
+import * as respuestaReduces from "./redux/respuesta.reducer";
 import {NgxPaginationModule} from "ngx-pagination";
 import {BuscadorModule} from "./buscador/buscador.module";
 import {ContactoModule} from "./contacto/contacto.module";
 import {ContactoComponent} from "./contacto/contacto.component";
 import {BuscadorPageModule} from "./buscador-page/buscador-page.module";
 import {BuscadorPageComponent} from "./buscador-page/buscador-page.component";
+import {JuegodetailModule} from "./juegodetail/juegodetail.module";
+import {JuegodetailComponent} from "./juegodetail/juegodetail.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -50,11 +52,13 @@ export function createTranslateLoader(http: HttpClient) {
     FooterComponent,
     LoginComponent,
     ContactoComponent,
-    BuscadorPageComponent
+    BuscadorPageComponent,
+    JuegodetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    JuegodetailModule,
     ErrorModule,
     CommonModule,
     HeaderModule,
@@ -87,7 +91,7 @@ export function createTranslateLoader(http: HttpClient) {
     ),
     StoreModule.forFeature(
       respuestaReduces.respuestaReducer,
-      respuestaReduces.RespuestaReducer
+      respuestaReduces.RespuestaReducer,
     ),
     EffectsModule.forRoot([RespuestaEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],

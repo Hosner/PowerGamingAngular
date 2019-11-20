@@ -1,38 +1,34 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 
-import {Observable, Subscription} from "rxjs";
-import {DataService} from "../shared/servicios/data.service";
-import {RespuestaService} from "../ngrx/respuesta.service";
-import {Entrada} from "../shared/model/entrada";
-import {Juego} from "../shared/model/juego";
-import {Respuesta} from "../shared/model/respuesta";
-
+import {DataService} from '../shared/servicios/data.service';
+import {RespuestaService} from '../redux/respuesta.service';
 
 @Component({
   selector: 'app-buscador-page',
   templateUrl: './buscador-page.component.html',
-  styleUrls: ['./buscador-page.component.css']
+  styleUrls: ['./buscador-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BuscadorPageComponent implements OnInit,OnDestroy {
-  page: number = 1;
+export class BuscadorPageComponent implements OnInit, OnDestroy {
+  page = 1;
 
-  juegosSearch:Observable<Juego[]>;
+  search: string;
 
-  constructor(private _dataService:DataService,
-              private _respuestaService: RespuestaService
+  juegosSearch = this.respuestaService.resultadoBuscador();
+
+
+  constructor(private dataService: DataService,
+              private respuestaService: RespuestaService
              ) { }
 
   ngOnInit() {
-    this.juegosSearch = this._respuestaService.resultadoBuscador();
+
   }
 
   ngOnDestroy() {
   }
 
   addJuego(id) {
-    let entrada = new Entrada();
-    entrada.usuario.idLogin = this._dataService.usuarioLoggeado.idLogin;
-    entrada.IdJuego = id;
 
   }
 }

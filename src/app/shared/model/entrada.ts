@@ -1,16 +1,12 @@
 /**
  * Objeto entrada de la peticion
  */
-import {Categoria} from "./categoria";
-import {Creador} from "./creador";
-import {Plataforma} from "./plataforma";
-import {Idioma} from "./idioma";
 import {Usuario} from "./usuario";
 import {Itembiblioteca} from "./itembiblioteca";
 
 export class Entrada {
-  MetodoPeticion: string;
-  Action: string;
+  MetodoPeticion?: string;
+  Action?: string;
 
   Nombre?:string;
 
@@ -19,7 +15,7 @@ export class Entrada {
   Plataformas?:number[];
   Idiomas?:string[];
   Fecha?:string;
-  IdJuego?:number;
+  IdJuego?:string;
   usuario?:Usuario;
 
   IdLogin?:string;

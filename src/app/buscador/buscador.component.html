@@ -1,9 +1,9 @@
-<div id="buscador-form" *ngIf="datosPrecarga$ | async as respuesta">
+<div id="buscador-form" *ngIf="datosPrecarga$ | async as respuesta ">
   <form [formGroup]="controlBuscador" (ngSubmit)="OnSubmit()">
     <a (mouseover)="ver(1)" (mouseout)="ocultar(1)" class="dropbtn">{{'categoria' | translate}}
       <div id="meumenudes1" class="menu-search">
           <label class="container" *ngFor="let categoria of respuesta.DatosPrecargaJuego.Categorias">{{categoria.nombre}}
-            <input type="checkbox" formControlName="categorias"  (click)="OnclickCategoria(categoria.idCategoria)"/><br>
+            <input type="checkbox" formControlName="categorias" (change)="OnclickCategoria(categoria.idCategoria, $event)"/><br>
             <span class="checkmark"></span>
           </label>
       </div>
@@ -16,7 +16,7 @@
     <a (mouseover)="ver(2)" (mouseout)="ocultar(2)" class="dropbtn">{{'plataforma' | translate}}
       <div id="meumenudes2" class="menu-search2">
           <label class="container" *ngFor="let plataforma of respuesta.DatosPrecargaJuego.Plataformas">{{plataforma.nombre}}
-            <input type="checkbox" formControlName="plataformas" (click)="OnclickPlataforma(plataforma.idPlataforma)"/><br>
+            <input type="checkbox" formControlName="plataformas" (click)="OnclickPlataforma(plataforma.idPlataforma,$event)"/><br>
             <span class="checkmark"></span>
           </label>
       </div>
@@ -24,7 +24,7 @@
     <a (mouseover)="ver(3)" (mouseout)="ocultar(3)" class="dropbtn">{{'idioma' | translate}}
       <div id="meumenudes3" class="menu-search3">
           <label class="container" *ngFor="let idioma of respuesta.DatosPrecargaJuego.Idiomas">{{idioma.nombre}}
-            <input type="checkbox" formControlName="idiomas" (click)="OnclickIdioma(idioma.idIdioma)"/><br>
+            <input type="checkbox" formControlName="idiomas" (click)="OnclickIdioma(idioma.idIdioma,$event)"/><br>
             <span class="checkmark"></span>
           </label>
       </div>
@@ -56,7 +56,7 @@
 
     <input class="search" type="text"
            formControlName="nombre"
-           autocomplete="off" />
+           autocomplete="off"/>
 
     <button class="buttoncolor" type="submit">{{'buscar' | translate}}</button>
   </form>

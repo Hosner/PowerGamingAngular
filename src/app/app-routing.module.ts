@@ -8,6 +8,7 @@ import {RegistroComponent} from './login/registro/registro.component';
 import {ErrorComponent} from "./shared/error/error.component";
 import {ContactoComponent} from "./contacto/contacto.component";
 import {BuscadorPageComponent} from "./buscador-page/buscador-page.component";
+import {JuegodetailComponent} from "./juegodetail/juegodetail.component";
 
 
 const routes: Routes = [
@@ -15,9 +16,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   /*{path: 'configuracion', component: ConfiguracionComponent},
   {path: 'biblioteca', component: BibliotecaComponent},
-  {path: 'detalle/:id', component: JuegodetailComponent},
-  ,
   {path: 'forgetpass', component: ForgetpassComponent},*/
+  {path: 'detalle/:id', component: JuegodetailComponent},
   {path: 'buscador-page', component: BuscadorPageComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'error', component: ErrorComponent},

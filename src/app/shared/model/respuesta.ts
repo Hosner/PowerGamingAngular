@@ -9,8 +9,8 @@ import {Datosprecargajuego} from "./datosprecargajuego";
  * Objecto de la respuesta que nos devuelve back
  */
 export interface Respuesta {
-    Status: string;
-    StatusMsg: string;
+    Status?: string;
+    StatusMsg?: string;
 
     //DatosPrecargados
     Pais?:Pais[];
@@ -22,7 +22,7 @@ export interface Respuesta {
     Todos?:Juego[];
 
     Juego?:Juego;
-    Comentarios?:Map<string,Itembiblioteca>;
+    Comentarios?:[Itembiblioteca];
 
     IdsJuegosBiblioteca?:number[];
     JuegosBiblioteca?:Juego[];

@@ -1,35 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {DataService} from "../servicios/data.service";
-import {NetworkService} from "../servicios/network.service";
-import {Entrada} from "../model/entrada";
 import {Router} from "@angular/router";
+import {RespuestaService} from "../../redux/respuesta.service";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private _dataService:DataService,
-              private _networkService: NetworkService,
+  constructor(private dataService:DataService,
+              private respuestaService: RespuestaService,
               private router: Router) { }
 
   ngOnInit() {
   }
 
   logOut() {
-   /* let entrada = new Entrada();
-    entrada.IdLogin = this._dataService.usuarioLoggeado.idLogin;
-    this._networkService.sendRequest("Usuario",entrada,"Logout").subscribe(respuesta =>{
-      if(respuesta.Status === "OK"){
-        this._dataService.usuarioLoggeado = null;
-        this.router.navigate(['/inicio']);
-      }else{
-
-      }
-    }).unsubscribe();*/
-  }
-
-
+    this.dataService.usuarioLoggeado = undefined;
+    this.router.navigate(['/inicio']);
+    }
 }

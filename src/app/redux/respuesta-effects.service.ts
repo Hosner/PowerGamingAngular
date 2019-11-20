@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, concatMap, map} from "rxjs/operators";
-import {Respuesta} from "../shared/model/respuesta";
-import * as RespuestaActions from ".//respuesta.actions";
-import {environment} from "../../environments/environment";
-import {DataService} from "../shared/servicios/data.service";
-import {Juego} from "../shared/model/juego";
-import {of} from "rxjs";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {concatMap, map} from 'rxjs/operators';
+import {Respuesta} from '../shared/model/respuesta';
+import * as RespuestaActions from './/respuesta.actions';
+import {environment} from '../../environments/environment';
+import {DataService} from '../shared/servicios/data.service';
+import {Juego} from '../shared/model/juego';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
@@ -25,9 +24,9 @@ export class RespuestaEffects {
           {
             Servicio: this.CONTROLLER_SERVICE,
             Metodo: 'Inicio',
-            IdiomaWeb: this._dataService.idiomaWeb,
+            IdiomaWeb: this.dataService.idiomaWeb,
             Action: 'DatosInicio',
-            Entrada: this._dataService.entrada
+            Entrada: this.dataService.entrada
           },
           httpOptions).pipe(
           map(respuesta => RespuestaActions.inicioDatosRespuestaSuccess({success: respuesta}))
@@ -44,12 +43,31 @@ export class RespuestaEffects {
           {
             Servicio: this.CONTROLLER_SERVICE,
             Metodo: 'Juego',
-            IdiomaWeb: this._dataService.idiomaWeb,
+            IdiomaWeb: this.dataService.idiomaWeb,
             Action: 'Buscar',
-            Entrada: this._dataService.entrada
+            Entrada: this.dataService.entrada
           },
           httpOptions).pipe(
           map(respuesta => RespuestaActions.buscadorResultadoSuccess({success: respuesta.JuegosSearch}))
+        )
+      )
+    )
+  );
+
+  juegoDetail$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RespuestaActions.juegoDetail),
+      concatMap(() =>
+        this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
+          {
+            Servicio: this.CONTROLLER_SERVICE,
+            Metodo: 'Juego',
+            IdiomaWeb: this.dataService.idiomaWeb,
+            Action: 'Juego',
+            Entrada: this.dataService.entrada
+          },
+          httpOptions).pipe(
+          map(respuesta => RespuestaActions.juegoDetailSuccess({success: respuesta}))
         )
       )
     )
@@ -63,12 +81,12 @@ export class RespuestaEffects {
           {
             Servicio: this.CONTROLLER_SERVICE,
             Metodo: 'Usuario',
-            IdiomaWeb: this._dataService.idiomaWeb,
+            IdiomaWeb: this.dataService.idiomaWeb,
             Action: 'Login',
-            Entrada: this._dataService.entrada
+            Entrada: this.dataService.entrada
           },
           httpOptions).pipe(
-            map(respuesta => RespuestaActions.loginRespuestaSuccess({success: respuesta}))
+          map(respuesta => RespuestaActions.loginRespuestaSuccess({success: respuesta}))
         )
       )
     )
@@ -76,6 +94,6 @@ export class RespuestaEffects {
 
   constructor(private actions$: Actions,
               private http: HttpClient,
-              private _dataService: DataService) {
+              private dataService: DataService) {
   }
 }

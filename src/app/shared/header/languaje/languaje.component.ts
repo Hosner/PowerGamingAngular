@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {Constants} from "../../utils/constants";
 import {DataService} from "../../servicios/data.service";
-import * as RespuestaActions from "../../../ngrx/respuesta.actions";
+import * as RespuestaActions from "../../../redux/respuesta.actions";
 import {Store} from "@ngrx/store";
-import {State} from "../../../ngrx/respuesta.reducer";
+import {State} from "../../../redux/respuesta.reducer";
 
 @Component({
   selector: 'app-languaje',
   templateUrl: './languaje.component.html',
-  styleUrls: ['./languaje.component.css']
+  styleUrls: ['./languaje.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LanguajeComponent implements OnInit {
   constructor(private _translateService: TranslateService,

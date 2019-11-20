@@ -1,28 +1,29 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 import {NetworkService} from './shared/servicios/network.service';
 import {DataService} from './shared/servicios/data.service';
-import {Entrada} from './shared/model/entrada';
-import {Juego} from "./shared/model/juego";
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
+  languaje: string;
 
   constructor( private _translateService: TranslateService,
                private _dataService: DataService,
                private _networkService: NetworkService) {
-    _translateService.setDefaultLang("es");
-    _translateService.use("es");
-    _dataService.idiomaWeb = "es";
-
-
+    this.languaje = navigator.language.charAt(0).concat(navigator.language.charAt(1));
+    if(!this.languaje){
+      _translateService.setDefaultLang("es");
+    }else {
+      _translateService.use(this.languaje);
+      _dataService.idiomaWeb = this.languaje;
+    }
   }
 
-  ngOnInit(): void {
-  }
 }

@@ -20,6 +20,16 @@ export const buscadorResultadoSuccess = createAction(
   props<{ success: Juego[] }>()
 );
 
+export const juegoDetail = createAction(
+  '[Juego Detail] Juego Detail'
+);
+
+export const  juegoDetailSuccess = createAction(
+  '[Juego Detail Sucess] Success',
+  props<{ success: Respuesta}>()
+);
+
+//Usuario
 export const loginRespuesta = createAction(
   '[Login] Login Restultado'
 );
@@ -28,4 +38,3 @@ export const loginRespuestaSuccess = createAction(
   '[Login Datos] Success Login Resultado',
   props<{ success: Respuesta}>()
 );
-

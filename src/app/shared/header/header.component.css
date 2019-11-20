@@ -1,0 +1,19 @@
+.nav{
+  position: relative;
+  top: 20px
+}
+.nav li{
+  display: inline-block;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+.nav a{
+  font: 1em sans-serif;
+  color: azure;
+
+  cursor: hand;
+}
+.nav a:hover{
+  color: #f00;
+  text-decoration: none;
+}

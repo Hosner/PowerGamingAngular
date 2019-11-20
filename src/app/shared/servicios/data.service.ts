@@ -1,14 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Usuario} from "../model/usuario";
-import {Provincia} from "../model/provincia";
-import {Pais} from "../model/pais";
-import {Categoria} from "../model/categoria";
-import {Creador} from "../model/creador";
-import {Plataforma} from "../model/plataforma";
-import {Idioma} from "../model/idioma";
-import {Formato} from "../model/formato";
-import {Tipoedicion} from "../model/tipoedicion";
 import {Entrada} from "../model/entrada";
+import {Datosprecargajuego} from "../model/datosprecargajuego";
 
 /**
  * Servicio para los datos compartidos
@@ -27,22 +20,12 @@ export class DataService {
     public showLoading: boolean;
 
     public usuarioLoggeado : Usuario;
-
     public idiomaWeb: string;
 
-    public provincias: Provincia[];
-    public paises: Pais[];
-    public categorias: Categoria[];
-    public creadores: Creador[];
-    public plataformas: Plataforma[];
-    public idiomas: Idioma[];
-    public formatos: Formato[];
-    public tipoEdiciones: Tipoedicion[];
-
-    public pageSize: 3;
-    public page: 1;
-
     public entrada:Entrada;
+
+    public datosPrecarga: Datosprecargajuego;
+
 
     constructor() {
 

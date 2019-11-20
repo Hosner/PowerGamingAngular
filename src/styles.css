@@ -13,26 +13,7 @@ a{
   cursor: pointer;
 }
 
-.idiomaEs{
-  background-color: transparent;
-  border: transparent;
-  background-image: url("src/assets/img/es.png");
-  background-repeat:no-repeat;
-  height: 30px !important;
-  width: 35px !important;
-  padding: 0 0;
-  cursor: pointer;
-}
-.idiomaEn{
-  background-color: transparent;
-  border: transparent;
-  background-image: url("src/assets/img/en-us.png");
-  background-repeat:no-repeat;
-  height: 30px !important;
-  width: 35px !important;
-  padding: 0 0;
-  cursor: pointer;
-}
+
 input.enlace{
   border:0;
   width: 75px;
@@ -52,16 +33,7 @@ header{
   background-color: black;
   color: azure;
 }
-#img1{
-  top: 30px;
-  position: relative;
-  display: inline-block;
-}
-#img2{
-  top: 30px;
-  position: relative;
-  display: inline-block;
-}
+
 header p{
   display: inline-block;
 }
@@ -71,31 +43,16 @@ nav{
   height: 100%;
 
 }
-.nav{
-  position: relative;
-  top: 20px
-}
-.nav li{
-  display: inline-block;
-  padding-left: 4%;
-  padding-right: 4%;
-}
 ul{
   width: 100%;
 }
-.nav a{
-  font: 1em sans-serif;
-  color: azure;
 
-  cursor: hand;
-}
-.nav a:hover{
-  color: #f00;
-  text-decoration: none;
-}
 a:hover{
   color: #f00;
   text-decoration: none;
+}
+.alogin{
+  color:black;
 }
 .menu{
   width: 100%;
@@ -185,12 +142,7 @@ section{
   display:inline-block;
   text-decoration:none;
 }
-.sectionjuegos div{
-  height: 214px;
-  width: 150px;
-  margin: 20px;
-  display:inline-block;
-}
+
 .pjuego{
   position: relative;
   top: -45px;
@@ -206,39 +158,7 @@ section{
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.menu-search{
-  background-color:#000;
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  padding: 10px;
-}
-.menu-search2{
-  background-color:#000;
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  left: 290px;
-  padding: 10px;
-}
-.menu-search3{
-  background-color:#000;
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  left: 390px;
-  padding: 10px;
 
-}
 .menudes-contido2 {
   display: none;
   position: relative;
@@ -262,7 +182,6 @@ section{
   position: relative;
 
   font-size: 20px;
-
 
 }
 .show2 {
@@ -419,9 +338,7 @@ button{
   padding: 6PX 24PX;
   size: 13PX;
 }
-.alogin{
-  color:black;
-}
+
 .carrito{
   width: 30%;
 
@@ -443,7 +360,7 @@ button{
 select{
   border-radius: 4px;
 }
-input[type=text]:focus {
+/*input[type=text]:focus {
   border: 3px solid #f00;
 }
 input[type=password]:focus {
@@ -451,74 +368,9 @@ input[type=password]:focus {
 }
 input[type=email]:focus {
   border: 3px solid #f00;
-}
+}*/
 input{
   border-radius: 4px;
-}
-/*Checkbox */
-.container {
-  display: block;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-.container:hover input ~ .checkmark {
-  background-color: #f00;
-}
-
-.container input:checked ~ .checkmark {
-  background-color: #f00;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.page-item.active .page-link {
-  color: #fff;
-  background-color: #f00;
-  border-color: #f00;
-}
-
-.page-link {
-  color: #f00;
 }
 
 .block{

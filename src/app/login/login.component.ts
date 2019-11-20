@@ -1,22 +1,31 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NetworkService} from "../shared/servicios/network.service";
-import {DataService} from "../shared/servicios/data.service";
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {DataService} from '../shared/servicios/data.service';
+import {Store} from "@ngrx/store";
+import {State} from "../redux/respuesta.reducer";
+import * as RespuestaActions from "../redux/respuesta.actions";
+import {Router} from "@angular/router";
 import {Entrada} from "../shared/model/entrada";
-import {Subscription} from "rxjs";
-
+import {Observable} from "rxjs";
+import {Respuesta} from "../shared/model/respuesta";
+import {RespuestaService} from "../redux/respuesta.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit{
+  public submitted: boolean;
   controlLogin: FormGroup;
-  private subscriptions: Subscription = new Subscription();
-  constructor( private _networkService: NetworkService,
-               private _dataService: DataService) { }
+  respuesta: Observable<Respuesta>;
+
+  constructor(private dataService: DataService,
+              private store: Store<State>,
+              private respuestaService: RespuestaService,
+              private router: Router) { }
 
   ngOnInit() {
     this.controlLogin = new FormGroup({
@@ -25,20 +34,26 @@ export class LoginComponent implements OnInit,OnDestroy {
     })
   }
 
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
+  OnSubmit() {
+    this.submitted = true;
+    if(this.controlLogin.valid) {
+      let entrada = new Entrada();
+      entrada.Email = this.controlLogin.get('email').value;
+      entrada.Password = this.controlLogin.get('password').value;
+      this.dataService.entrada = entrada;
+      this.store.dispatch(RespuestaActions.loginRespuesta());
 
-  logIn() {
-    /*let entrada = new Entrada();
-    entrada.Email = this.controlLogin.get('email').value;
-    entrada.Password = this.controlLogin.get('password').value;
-    this.subscriptions.add(this._networkService.sendRequest("Usuario", entrada,"Login").subscribe(respuesta => {
-       if(respuesta.Status === "OK"){
-         this._dataService.usuarioLoggeado = respuesta.usuario;
-       }else{
+      this.respuesta = this.respuestaService.login();
 
-       }
-    }));*/
+      this.respuesta.subscribe((respuesta: Respuesta) => {
+        if (respuesta.Status === "KO") {
+          alert(respuesta.StatusMsg);
+        } else {
+          this.dataService.usuarioLoggeado = respuesta.usuario;
+          console.log("entrad")
+          /*this.router.navigate(['/inicio']);*/
+        }
+      }).unsubscribe();
+    }
   }
 }

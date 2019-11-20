@@ -2,7 +2,6 @@ import {Action, createReducer, on} from "@ngrx/store";
 import * as RespuestaActions from "./respuesta.actions";
 import {Respuesta} from "../shared/model/respuesta";
 import {Juego} from "../shared/model/juego";
-import {Usuario} from "../shared/model/usuario";
 
 export const respuestaReducer = 'respuestaReducer';
 
@@ -10,9 +9,10 @@ export interface State{
   respuesta?: Respuesta;
   juegoSearch?: Juego[];
   respuestaLogin?: Respuesta;
+  juegoDetail?: Respuesta;
 }
 
-export const initialState: State = {respuesta: undefined, juegoSearch: undefined, respuestaLogin:undefined};
+export const initialState: State = {respuesta: undefined, juegoSearch: undefined, respuestaLogin:undefined, juegoDetail:undefined};
 
 const reducer = createReducer(
   initialState,
@@ -28,6 +28,13 @@ const reducer = createReducer(
     return {
       ...state,
       juegoSearch:  payload.success
+    }
+  }),
+  on(RespuestaActions.juegoDetail, state => state),
+  on(RespuestaActions.juegoDetailSuccess, (state, payload) => {
+    return {
+      ...state,
+      juegoDetail:  payload.success
     }
   }),
   on(RespuestaActions.loginRespuesta, state => state),

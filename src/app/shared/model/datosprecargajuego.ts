@@ -9,7 +9,7 @@ export interface Datosprecargajuego {
   Categorias?:Categoria[];
   Creadores?:Creador[];
   Idiomas?:Idioma[];
-  Plataformas:Plataforma[];
+  Plataformas?:Plataforma[];
   Formatos?:Formato[];
   TipoEdiciones?:Tipoedicion[];
 }

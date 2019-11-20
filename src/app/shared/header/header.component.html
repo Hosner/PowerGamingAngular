@@ -1,13 +1,13 @@
 <header>
-  <img class="menufig" src="../assets/img/powergaminglogo.png">
+  <img class="menufig" src="../assets/img/powergaminglogo.png" alt="img">
   <app-languaje></app-languaje>
   <nav class="nav">
     <ul>
-      <li><a [routerLink]="['/inicio']">inicio</a></li>
-      <li *ngIf="!_dataService.usuarioLoggeado"><a [routerLink]="['/login']">entrar</a></li>
-      <li *ngIf="_dataService.usuarioLoggeado"><a [routerLink]="['/configuracion']">configuracion</a></li>
-      <li *ngIf="_dataService.usuarioLoggeado"><a [routerLink]="['/biblioteca']">biblioteca</a></li>
-      <li *ngIf="_dataService.usuarioLoggeado"><input class="enlace" (click)="logOut()" value="salir"/></li>
+      <li><a [routerLink]="['/inicio']">{{'inicio'| translate}}</a></li>
+      <li *ngIf="!dataService.usuarioLoggeado"><a [routerLink]="['/login']">{{'entrar'|translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado"><a [routerLink]="['/inicio']">{{'micuenta'|translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado"><a [routerLink]="['/inicio']">{{'biblioteca'| translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado"><button class="enlace" (click)="logOut()">{{'salir'|translate}}</button></li>
     </ul>
   </nav>
 
