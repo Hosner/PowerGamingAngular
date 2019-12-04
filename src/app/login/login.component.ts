@@ -1,14 +1,15 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DataService} from '../shared/servicios/data.service';
 import {Store} from "@ngrx/store";
 import {State} from "../redux/respuesta.reducer";
-import * as RespuestaActions from "../redux/respuesta.actions";
 import {Router} from "@angular/router";
 import {Entrada} from "../shared/model/entrada";
-import {Observable} from "rxjs";
 import {Respuesta} from "../shared/model/respuesta";
 import {RespuestaService} from "../redux/respuesta.service";
+import {HttpClient} from "@angular/common/http";
+import {NetworkService} from "../shared/servicios/network.service";
+
 
 @Component({
   selector: 'app-login',
@@ -20,12 +21,13 @@ import {RespuestaService} from "../redux/respuesta.service";
 export class LoginComponent implements OnInit{
   public submitted: boolean;
   controlLogin: FormGroup;
-  respuesta: Observable<Respuesta>;
 
   constructor(private dataService: DataService,
               private store: Store<State>,
               private respuestaService: RespuestaService,
-              private router: Router) { }
+              private router: Router,
+              private http: HttpClient,
+              private networkService: NetworkService) { }
 
   ngOnInit() {
     this.controlLogin = new FormGroup({
@@ -35,25 +37,23 @@ export class LoginComponent implements OnInit{
   }
 
   OnSubmit() {
+    this.dataService.showLoading = true;
+    let respuesta = new Respuesta();
     this.submitted = true;
     if(this.controlLogin.valid) {
       let entrada = new Entrada();
       entrada.Email = this.controlLogin.get('email').value;
       entrada.Password = this.controlLogin.get('password').value;
-      this.dataService.entrada = entrada;
-      this.store.dispatch(RespuestaActions.loginRespuesta());
+      this.networkService.sendRequest("Usuario",entrada).subscribe(value => {
+        if (value.Status === "KO"){
 
-      this.respuesta = this.respuestaService.login();
-
-      this.respuesta.subscribe((respuesta: Respuesta) => {
-        if (respuesta.Status === "KO") {
-          alert(respuesta.StatusMsg);
-        } else {
-          this.dataService.usuarioLoggeado = respuesta.usuario;
-          console.log("entrad")
-          /*this.router.navigate(['/inicio']);*/
+        } else if(value.Status === "OK"){
+          localStorage.setItem(value.usuario.idLogin, JSON.stringify(value.usuario));
+          this.dataService.usuarioLoggeado = value.usuario;
+          this.dataService.showLoading = false;
+          this.router.navigate(['inicio']);
         }
-      }).unsubscribe();
+      });
     }
   }
 }

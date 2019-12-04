@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {NetworkService} from "../shared/servicios/network.service";
 import {Entrada} from "../shared/model/entrada";
 import {DataService} from "../shared/servicios/data.service";
 import {FormGroup} from "@angular/forms";
@@ -28,7 +27,6 @@ export class JuegodetailComponent implements OnInit {
   constructor(
     private respuestaService: RespuestaService,
     private router: ActivatedRoute,
-    private networkService: NetworkService,
     private dataService: DataService,
     private store: Store<State>
   ) {

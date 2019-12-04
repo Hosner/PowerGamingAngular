@@ -8,11 +8,10 @@ export const respuestaReducer = 'respuestaReducer';
 export interface State{
   respuesta?: Respuesta;
   juegoSearch?: Juego[];
-  respuestaLogin?: Respuesta;
   juegoDetail?: Respuesta;
 }
 
-export const initialState: State = {respuesta: undefined, juegoSearch: undefined, respuestaLogin:undefined, juegoDetail:undefined};
+export const initialState: State = {respuesta: undefined, juegoSearch: undefined,juegoDetail:undefined};
 
 const reducer = createReducer(
   initialState,
@@ -35,13 +34,6 @@ const reducer = createReducer(
     return {
       ...state,
       juegoDetail:  payload.success
-    }
-  }),
-  on(RespuestaActions.loginRespuesta, state => state),
-  on(RespuestaActions.loginRespuestaSuccess, (state, payload) => {
-    return {
-      ...state,
-      respuestaLogin:  payload.success
     }
   })
 );

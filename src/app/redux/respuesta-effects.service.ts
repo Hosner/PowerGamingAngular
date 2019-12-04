@@ -14,7 +14,6 @@ const httpOptions = {
 
 @Injectable()
 export class RespuestaEffects {
-  private readonly CONTROLLER_SERVICE: string = 'Controller';
 
   inicioDatosEffect$ = createEffect(() =>
     this.actions$.pipe(
@@ -22,10 +21,8 @@ export class RespuestaEffects {
       concatMap(() =>
         this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
           {
-            Servicio: this.CONTROLLER_SERVICE,
             Metodo: 'Inicio',
             IdiomaWeb: this.dataService.idiomaWeb,
-            Action: 'DatosInicio',
             Entrada: this.dataService.entrada
           },
           httpOptions).pipe(
@@ -41,10 +38,8 @@ export class RespuestaEffects {
       concatMap(() =>
         this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
           {
-            Servicio: this.CONTROLLER_SERVICE,
-            Metodo: 'Juego',
+            Metodo: 'Buscador',
             IdiomaWeb: this.dataService.idiomaWeb,
-            Action: 'Buscar',
             Entrada: this.dataService.entrada
           },
           httpOptions).pipe(
@@ -60,10 +55,8 @@ export class RespuestaEffects {
       concatMap(() =>
         this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
           {
-            Servicio: this.CONTROLLER_SERVICE,
             Metodo: 'Juego',
             IdiomaWeb: this.dataService.idiomaWeb,
-            Action: 'Juego',
             Entrada: this.dataService.entrada
           },
           httpOptions).pipe(
@@ -73,24 +66,6 @@ export class RespuestaEffects {
     )
   );
 
-  login$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(RespuestaActions.loginRespuesta),
-      concatMap(() =>
-        this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
-          {
-            Servicio: this.CONTROLLER_SERVICE,
-            Metodo: 'Usuario',
-            IdiomaWeb: this.dataService.idiomaWeb,
-            Action: 'Login',
-            Entrada: this.dataService.entrada
-          },
-          httpOptions).pipe(
-          map(respuesta => RespuestaActions.loginRespuestaSuccess({success: respuesta}))
-        )
-      )
-    )
-  );
 
   constructor(private actions$: Actions,
               private http: HttpClient,

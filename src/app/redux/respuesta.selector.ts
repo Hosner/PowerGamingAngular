@@ -13,6 +13,3 @@ export const juegoDetail = createFeatureSelector<State>(respuestaReducer);
 
 export const juegoDetailSuccess = createSelector(juegoDetail, (state: State) => state.juegoDetail);
 
-export const loginResultadoState = createFeatureSelector<State>(respuestaReducer);
-
-export const loginResultadoRespuesta = createSelector(loginResultadoState, (state: State) => state.respuestaLogin);

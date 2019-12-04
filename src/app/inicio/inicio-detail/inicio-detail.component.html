@@ -1,4 +1,4 @@
-<div *ngIf="respuesta">
+<div *ngIf="respuesta" >
   <section class="sectionjuegos">
     <h2>{{'indextitle' | translate}}</h2>
     <div *ngFor="let juego of respuesta.Todos  | paginate: { itemsPerPage: 3, currentPage: page} ">

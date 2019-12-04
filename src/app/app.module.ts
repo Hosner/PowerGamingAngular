@@ -38,6 +38,7 @@ import {BuscadorPageModule} from "./buscador-page/buscador-page.module";
 import {BuscadorPageComponent} from "./buscador-page/buscador-page.component";
 import {JuegodetailModule} from "./juegodetail/juegodetail.module";
 import {JuegodetailComponent} from "./juegodetail/juegodetail.component";
+import {LoadingModule} from "./shared/loading/loading.module";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -100,7 +101,8 @@ export function createTranslateLoader(http: HttpClient) {
     StoreRouterConnectingModule.forRoot(),
     EntityDataModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    BuscadorModule
+    BuscadorModule,
+    LoadingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ import {Datosprecargajuego} from "./datosprecargajuego";
 /**
  * Objecto de la respuesta que nos devuelve back
  */
-export interface Respuesta {
+export class Respuesta {
     Status?: string;
     StatusMsg?: string;
 

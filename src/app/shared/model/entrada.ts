@@ -6,7 +6,6 @@ import {Itembiblioteca} from "./itembiblioteca";
 
 export class Entrada {
   MetodoPeticion?: string;
-  Action?: string;
 
   Nombre?:string;
 

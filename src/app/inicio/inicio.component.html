@@ -1,4 +1,4 @@
 <app-buscador></app-buscador>
-<app-inicio-detail [respuesta]="datosPrecarga$ | async"></app-inicio-detail>
+<app-inicio-detail [hidden]="this.dataService.showLoading" [respuesta]="datosPrecarga$ | async"></app-inicio-detail>
 
 

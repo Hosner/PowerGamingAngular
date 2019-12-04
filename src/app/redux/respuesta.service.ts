@@ -22,8 +22,4 @@ export class RespuestaService {
   public juegoDetail(): Observable<Respuesta>{
     return this.store.select(RespuestaSelectors.juegoDetailSuccess);
   }
-
-  public login(): Observable<Respuesta>{
-    return this.store.select(RespuestaSelectors.loginResultadoRespuesta);
-  }
 }

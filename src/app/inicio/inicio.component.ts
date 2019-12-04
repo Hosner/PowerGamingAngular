@@ -4,6 +4,8 @@ import {Store} from '@ngrx/store';
 import * as RespuestaActions from '../redux/respuesta.actions';
 import {State} from '../redux/respuesta.reducer';
 import {RespuestaService} from '../redux/respuesta.service';
+import {DataService} from "../shared/servicios/data.service";
+
 
 @Component({
   selector: 'app-inicio',
@@ -17,7 +19,8 @@ export class InicioComponent implements OnInit{
 
   constructor(private store: Store<State>,
               private translateService: TranslateService,
-              private respuestaService: RespuestaService) {
+              private respuestaService: RespuestaService,
+              private dataService: DataService) {
   }
 
   ngOnInit() {
