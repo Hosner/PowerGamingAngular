@@ -29,7 +29,7 @@ export class Respuesta {
     Puntuacion?:Itembiblioteca[];
 
     JuegosSearch?:Juego[];
-
+    Logged?: boolean;
     usuario?:Usuario;
 
 }

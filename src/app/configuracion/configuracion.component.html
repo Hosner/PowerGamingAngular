@@ -1,0 +1,19 @@
+<section class="micuenta">
+  <h2>{{'myaccountmensage' | translate}}</h2>
+  <form [formGroup]="controlMyAccount" (click)="OnSubmit()">
+    <label>{{'name' | translate}}:</label>
+    <input type="text" formControlName="nombre" value="{{dataService.usuarioLoggeado.nombre}}" /><br>
+    <label>{{'apellido1' | translate}}: </label>
+    <input type="text" formControlName="apellido1" value="{{dataService.usuarioLoggeado.apellido1}}"/><br>
+    <label>{{'apellido2' | translate}}: </label>
+    <input type="text" formControlName="apellido2" value="{{dataService.usuarioLoggeado.apellido2}}"/><br>
+    <label>{{'telefono' | translate}}: </label>
+    <input type="text" formControlName="telefono"  value="{{dataService.usuarioLoggeado.telefono}}"/><br>
+    <label>{{'password' | translate}}, {{'cambiar' | translate}}:  </label>
+    <input type="password" formControlName="password" value="{{dataService.usuarioLoggeado.password}}"/><br>
+    <label>{{'nombreuser' | translate}}: </label>
+    <input type="text" formControlName="nombreUser" value="{{dataService.usuarioLoggeado.nombreUser}}"/><br>
+
+    <input class="buttoncolor" type="submit" value="{{'actualizar' | translate}}"/>
+  </form>
+</section>

@@ -22,6 +22,11 @@ export class AppComponent{
       translateService.use(this.languaje);
       dataService.idiomaWeb = this.languaje;
     }
+    this.dataService.usuarioLoggeado = JSON.parse(localStorage.getItem("IdSession"));
+    if(this.dataService.usuarioLoggeado) {
+      this.dataService.idLogin = this.dataService.usuarioLoggeado.idLogin;
+    }
+    console.log(localStorage.getItem("IdSession"))
   }
 
 }

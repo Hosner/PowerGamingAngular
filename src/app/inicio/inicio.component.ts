@@ -25,6 +25,7 @@ export class InicioComponent implements OnInit{
 
   ngOnInit() {
     this.store.dispatch(RespuestaActions.inicioDatosRespuesta());
+
   }
 
 }

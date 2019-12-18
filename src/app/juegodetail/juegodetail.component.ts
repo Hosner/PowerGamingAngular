@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Entrada} from "../shared/model/entrada";
 import {DataService} from "../shared/servicios/data.service";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {Edicion} from "../shared/model/edicion";
 import {Store} from "@ngrx/store";
 import {State} from "../redux/respuesta.reducer";
@@ -35,7 +35,11 @@ export class JuegodetailComponent implements OnInit {
     this.store.dispatch(RespuestaActions.juegoDetail());
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.controlAddComentario = new FormGroup({
+      comentarios: new FormControl()
+    })
+  }
 
   addJuego(id) {
     let entrada = new Entrada();

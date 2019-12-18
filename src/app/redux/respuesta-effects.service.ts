@@ -15,6 +15,8 @@ const httpOptions = {
 @Injectable()
 export class RespuestaEffects {
 
+  idLogin = this.dataService.idLogin;
+
   inicioDatosEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RespuestaActions.inicioDatosRespuesta),
@@ -56,6 +58,7 @@ export class RespuestaEffects {
         this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
           {
             Metodo: 'Juego',
+            IdLogin: this.idLogin,
             IdiomaWeb: this.dataService.idiomaWeb,
             Entrada: this.dataService.entrada
           },

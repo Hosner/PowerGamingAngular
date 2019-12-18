@@ -20,7 +20,7 @@
     <div *ngFor="let idioma of respuesta.Juego.idiomas">{{idioma.nombre}},</div>
   </div>
 
-  <!--<div *ngIf="dataService.usuarioLoggeado">
+  <div *ngIf="dataService.usuarioLoggeado">
     <div *ngIf="respuesta.Juego.existeEnBiblioteca === true">
       <p class="a">{{'anhadido' | translate}}</p>
     </div>
@@ -29,7 +29,7 @@
         <button (click)="addJuego(respuesta.Juego.idJuego)">{{'addBiblioteca' | translate}}</button>
       </a>
     </div>
-  </div>-->
+  </div>
 
   <div class="addCarrito" *ngIf="dataService.datosPrecarga">
     <div *ngIf="respuesta.Juego.ediciones">
@@ -54,8 +54,7 @@
       </form>
     </div>
   </div>
-
-  <!--<div *ngIf="dataService.usuarioLoggeado">
+  <div *ngIf="dataService.usuarioLoggeado">
     <div class="comentario">
       <form [formGroup]="controlAddComentario" (ngSubmit)="OnSubmitComentario()">
         <p>{{'juegomensage' | translate}} {{dataService.usuarioLoggeado.nombreUser}} :</p>
@@ -63,7 +62,7 @@
         <input class="buttoncolor" type="submit" name="modificar" value="{{'modificar' | translate}}"/>
       </form>
     </div>
-  </div>-->
+  </div>
 
   <div class="comentarios">
     <div *ngIf="respuesta.Comentarios.length !== 0 && true">

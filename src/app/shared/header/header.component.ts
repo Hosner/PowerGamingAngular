@@ -5,6 +5,7 @@ import {RespuestaService} from "../../redux/respuesta.service";
 import {Respuesta} from "../model/respuesta";
 import {HttpClient} from "@angular/common/http";
 import {NetworkService} from "../servicios/network.service";
+import {Entrada} from "../model/entrada";
 
 
 @Component({
@@ -23,18 +24,21 @@ export class HeaderComponent implements OnInit {
               private networkService: NetworkService) { }
 
   ngOnInit() {
-    console.log(this.dataService)
+    console.log(this.dataService);
   }
 
   logOut() {
-    this.dataService.usuarioLoggeado = undefined;
-    this.networkService.sendRequest("Usuario", this.dataService.usuarioLoggeado).subscribe(value => {
-      this.respuesta = value;
-    }).unsubscribe();
-    if(this.respuesta.Status == "OK"){
-      window.location.reload();
-    }else{
-      this.router.navigate(['/error']);
-    }
+    let entrada = new Entrada();
+    entrada.IdLogin = this.dataService.usuarioLoggeado.idLogin;
+    this.networkService.sendRequest("Usuario", entrada).subscribe(value => {
+      if(value.Status == "OK") {
+        window.location.reload();
+      }else{
+
+      }
+    });
+    localStorage.clear();
+    this.dataService.usuarioLoggeado = null;
+    this.dataService.idLogin = null;
   }
 }

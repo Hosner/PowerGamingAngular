@@ -9,6 +9,7 @@ import {Respuesta} from "../shared/model/respuesta";
 import {RespuestaService} from "../redux/respuesta.service";
 import {HttpClient} from "@angular/common/http";
 import {NetworkService} from "../shared/servicios/network.service";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -20,6 +21,7 @@ import {NetworkService} from "../shared/servicios/network.service";
 
 export class LoginComponent implements OnInit{
   public submitted: boolean;
+  params = [];
   controlLogin: FormGroup;
 
   constructor(private dataService: DataService,
@@ -48,8 +50,9 @@ export class LoginComponent implements OnInit{
         if (value.Status === "KO"){
 
         } else if(value.Status === "OK"){
-          localStorage.setItem(value.usuario.idLogin, JSON.stringify(value.usuario));
+          localStorage.setItem("IdSession", JSON.stringify(value.usuario));
           this.dataService.usuarioLoggeado = value.usuario;
+          this.dataService.idLogin = value.usuario.idLogin;
           this.dataService.showLoading = false;
           this.router.navigate(['inicio']);
         }

@@ -5,9 +5,9 @@
     <ul>
       <li><a [routerLink]="['/inicio']">{{'inicio'| translate}}</a></li>
       <li *ngIf="!dataService.usuarioLoggeado"><a [routerLink]="['/login']">{{'entrar'|translate}}</a></li>
-      <li *ngIf="dataService.usuarioLoggeado"><a [routerLink]="['/inicio']">{{'micuenta'|translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado"><a [routerLink]="['/configuracion']">{{'micuenta'|translate}}</a></li>
       <li *ngIf="dataService.usuarioLoggeado"><a [routerLink]="['/inicio']">{{'biblioteca'| translate}}</a></li>
-      <li *ngIf="dataService.usuarioLoggeado"><button class="enlace" (click)="logOut()">{{'salir'|translate}}</button></li>
+      <li *ngIf="dataService.usuarioLoggeado"><a (click)="logOut()">{{'salir'|translate}}</a></li>
     </ul>
   </nav>
 

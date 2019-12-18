@@ -20,6 +20,9 @@ export class DataService {
     public showLoading: boolean;
 
     public usuarioLoggeado: Usuario;
+
+    idLogin: any;
+
     public idiomaWeb: string;
 
     public entrada:Entrada;

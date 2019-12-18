@@ -39,6 +39,9 @@ import {BuscadorPageComponent} from "./buscador-page/buscador-page.component";
 import {JuegodetailModule} from "./juegodetail/juegodetail.module";
 import {JuegodetailComponent} from "./juegodetail/juegodetail.component";
 import {LoadingModule} from "./shared/loading/loading.module";
+import {CookieService} from "ngx-cookie-service";
+import {ConfiguracionModule} from "./configuracion/configuracion.module";
+import {ConfiguracionComponent} from "./configuracion/configuracion.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -54,7 +57,8 @@ export function createTranslateLoader(http: HttpClient) {
     LoginComponent,
     ContactoComponent,
     BuscadorPageComponent,
-    JuegodetailComponent
+    JuegodetailComponent,
+    ConfiguracionComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +108,7 @@ export function createTranslateLoader(http: HttpClient) {
     BuscadorModule,
     LoadingModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,18 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 import {InicioComponent} from './inicio/inicio.component';
 import {LoginComponent} from './login/login.component';
 
-import {ForgetpassComponent} from './login/forgetpass/forgetpass.component';
 import {RegistroComponent} from './login/registro/registro.component';
 import {ErrorComponent} from "./shared/error/error.component";
 import {ContactoComponent} from "./contacto/contacto.component";
 import {BuscadorPageComponent} from "./buscador-page/buscador-page.component";
 import {JuegodetailComponent} from "./juegodetail/juegodetail.component";
+import {ConfiguracionComponent} from "./configuracion/configuracion.component";
 
 
 const routes: Routes = [
   {path: 'inicio', component: InicioComponent},
   {path: 'login', component: LoginComponent},
-  /*{path: 'configuracion', component: ConfiguracionComponent},
+  {path: 'configuracion', component: ConfiguracionComponent},/*
   {path: 'biblioteca', component: BibliotecaComponent},
   {path: 'forgetpass', component: ForgetpassComponent},*/
   {path: 'detalle/:id', component: JuegodetailComponent},

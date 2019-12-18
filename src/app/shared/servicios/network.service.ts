@@ -5,8 +5,6 @@ import {DataService} from "./data.service";
 import {Respuesta} from "../model/respuesta";
 import {environment} from "../../../environments/environment";
 
-
-
 /**
  *
  */
@@ -36,7 +34,7 @@ export class NetworkService {
      */
     public sendRequest(metodoPeticion: string, entrada:any): Observable<Respuesta> {
         return this.httpClient.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
-          {Metodo: metodoPeticion, IdiomaWeb: this.dataService.idiomaWeb, Entrada: entrada}, httpOptions);
+          {Metodo: metodoPeticion, IdLogin: this.dataService.idLogin, IdiomaWeb: this.dataService.idiomaWeb, Entrada: entrada}, httpOptions);
     }
 
 }
