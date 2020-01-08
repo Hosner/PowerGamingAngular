@@ -15,8 +15,6 @@ const httpOptions = {
 @Injectable()
 export class RespuestaEffects {
 
-  idLogin = this.dataService.idLogin;
-
   inicioDatosEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RespuestaActions.inicioDatosRespuesta),
@@ -58,7 +56,7 @@ export class RespuestaEffects {
         this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
           {
             Metodo: 'Juego',
-            IdLogin: this.idLogin,
+            IdLogin: this.dataService.idLogin,
             IdiomaWeb: this.dataService.idiomaWeb,
             Entrada: this.dataService.entrada
           },
@@ -69,6 +67,19 @@ export class RespuestaEffects {
     )
   );
 
+  juegoBiblioteca$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(RespuestaActions.bibliotecaRespuesta),
+    concatMap(() =>
+      this.http.post<Respuesta>( `${environment.servers.urlPowerGaming}`,
+      {
+        Metodo: 'Biblioteca',
+        IdLogin: this.dataService.idLogin,
+        IdiomaWeb: this.dataService.idiomaWeb
+      },
+      httpOptions).pipe(
+      map(respuesta => RespuestaActions.bibliotecaRespuestaSuccess({success: respuesta}))))
+  ));
 
   constructor(private actions$: Actions,
               private http: HttpClient,

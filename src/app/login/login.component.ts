@@ -1,16 +1,13 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DataService} from '../shared/servicios/data.service';
 import {Store} from "@ngrx/store";
 import {State} from "../redux/respuesta.reducer";
 import {Router} from "@angular/router";
 import {Entrada} from "../shared/model/entrada";
-import {Respuesta} from "../shared/model/respuesta";
 import {RespuestaService} from "../redux/respuesta.service";
 import {HttpClient} from "@angular/common/http";
 import {NetworkService} from "../shared/servicios/network.service";
-import {CookieService} from "ngx-cookie-service";
-
 
 @Component({
   selector: 'app-login',
@@ -21,7 +18,6 @@ import {CookieService} from "ngx-cookie-service";
 
 export class LoginComponent implements OnInit{
   public submitted: boolean;
-  params = [];
   controlLogin: FormGroup;
 
   constructor(private dataService: DataService,
@@ -40,7 +36,6 @@ export class LoginComponent implements OnInit{
 
   OnSubmit() {
     this.dataService.showLoading = true;
-    let respuesta = new Respuesta();
     this.submitted = true;
     if(this.controlLogin.valid) {
       let entrada = new Entrada();

@@ -13,7 +13,6 @@ import {DataService} from "../shared/servicios/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InicioComponent implements OnInit{
-  page = 1;
 
   datosPrecarga$ = this.respuestaService.inicioDatos();
 
@@ -25,7 +24,6 @@ export class InicioComponent implements OnInit{
 
   ngOnInit() {
     this.store.dispatch(RespuestaActions.inicioDatosRespuesta());
-
   }
 
 }

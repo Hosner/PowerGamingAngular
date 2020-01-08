@@ -28,3 +28,12 @@ export const  juegoDetailSuccess = createAction(
   '[Juego Detail Sucess] Success',
   props<{ success: Respuesta}>()
 );
+
+export const bibliotecaRespuesta = createAction(
+  '[Biblioteca Datos] Biblioteca datos'
+);
+
+export const bibliotecaRespuestaSuccess = createAction(
+  '[Biblioteca Datos Success] Success Biblioteca datos',
+  props<{ success: Respuesta}>()
+);

@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {DataService} from "../shared/servicios/data.service";
 import {NetworkService} from "../shared/servicios/network.service";
 import {Entrada} from "../shared/model/entrada";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-configuracion',
@@ -13,6 +14,8 @@ import {Entrada} from "../shared/model/entrada";
 })
 export class ConfiguracionComponent implements OnInit,OnDestroy {
   controlMyAccount: FormGroup;
+
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private dataService: DataService,
               private _networkService: NetworkService,
@@ -33,7 +36,7 @@ export class ConfiguracionComponent implements OnInit,OnDestroy {
     }
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() { this.subscriptions.unsubscribe();}
 
   OnSubmit() {
     let entrada = new Entrada();
@@ -44,12 +47,12 @@ export class ConfiguracionComponent implements OnInit,OnDestroy {
     if(this.controlMyAccount.get('password').value !== ""){entrada.Password = this.controlMyAccount.get('password').value};
     if(this.controlMyAccount.get('telefono').value !== ""){entrada.Telefono = this.controlMyAccount.get('telefono').value};
     if(this.controlMyAccount.get('nombreUser').value !== ""){entrada.NombreUser = this.controlMyAccount.get('nombreUser').value};
-    this._networkService.sendRequest("Configuracion",entrada).subscribe(respuesta =>{
+    this.subscriptions.add(this._networkService.sendRequest("Configuracion",entrada).subscribe(respuesta =>{
       if(respuesta.Status === "OK"){
         this.dataService.usuarioLoggeado = respuesta.usuario;
       }else{
 
       }
-    });
+    }));
   }
 }

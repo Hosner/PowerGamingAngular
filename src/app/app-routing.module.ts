@@ -9,13 +9,14 @@ import {ContactoComponent} from "./contacto/contacto.component";
 import {BuscadorPageComponent} from "./buscador-page/buscador-page.component";
 import {JuegodetailComponent} from "./juegodetail/juegodetail.component";
 import {ConfiguracionComponent} from "./configuracion/configuracion.component";
+import {BibliotecaComponent} from "./biblioteca/biblioteca.component";
 
 
 const routes: Routes = [
   {path: 'inicio', component: InicioComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'configuracion', component: ConfiguracionComponent},/*
-  {path: 'biblioteca', component: BibliotecaComponent},
+  {path: 'configuracion', component: ConfiguracionComponent},
+  {path: 'biblioteca', component: BibliotecaComponent},/*
   {path: 'forgetpass', component: ForgetpassComponent},*/
   {path: 'detalle/:id', component: JuegodetailComponent},
   {path: 'buscador-page', component: BuscadorPageComponent},

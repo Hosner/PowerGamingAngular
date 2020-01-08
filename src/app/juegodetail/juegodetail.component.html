@@ -1,4 +1,4 @@
-<section class="sjuego" *ngIf="juego$ | async as respuesta">
+<section class="sjuego" *ngIf="juego$ | async as respuesta ">
   <img src="../../../../assets/img/icojuego/{{respuesta.Juego.idJuego}}.jpg" alt="{{respuesta.Juego.nombre}}"/>
   <div class="juegotitle">
     <h1>{{respuesta.Juego.nombre}}</h1>
@@ -31,29 +31,28 @@
     </div>
   </div>
 
-  <div class="addCarrito" *ngIf="dataService.datosPrecarga">
-    <div *ngIf="respuesta.Juego.ediciones">
-      <form [formGroup]="controlAddCarrito" (ngSubmit)="OnSubmitCarrito(respuesta.Juego.ediciones)">
-        <select formControlName="edicion">
-          <div *ngFor="let edicion of respuesta.Juego.ediciones">
-            <option value="{{edicion.id}}">
-              {{'formato' | translate}}
-              <div *ngFor="let formato of dataService.datosPrecarga.Formatos">
-                <div *ngIf="formato.idFormato === edicion.idFormato">{{formato.nombre}}</div>
-              </div>
-              {{'tipoedicion' | translate}}
-              <div *ngFor="let tipoEdicion of dataService.datosPrecarga.TipoEdiciones">
-                <div *ngIf="tipoEdicion.idTipoEdicion === edicion.idTipoEdicion">{{tipoEdicion.nombre}}</div>
-              </div>
-              {{'precio' | translate}} : {{edicion.precio}}
-            </option>
-            <br>
+  <div class="addCarrito" *ngIf="respuesta.Juego.ediciones">
+    <form [formGroup]="controlAddCarrito" (ngSubmit)="OnSubmitCarrito(respuesta.Juego.ediciones)">
+      <select formControlName="edicion">
+        <option *ngFor="let edicion of respuesta.Juego.ediciones" value="{{edicion.id}}">
+          <div *ngIf="datosPrecarga$ | async as datosPrecarga">
+            {{'formato' | translate}}
+            <div *ngFor="let formato of datosPrecarga.DatosPrecargaJuego.Formato">
+              <div *ngIf="formato.idFormato === edicion.idFormato">{{formato.nombre}}</div>
+            </div>
+            {{'tipoedicion' | translate}}
+            <div *ngFor="let tipoEdicion of datosPrecarga.DatosPrecargaJuego.TipoEdiciones">
+              <div *ngIf="tipoEdicion.idTipoEdicion === edicion.idTipoEdicion">{{tipoEdicion.nombre}}</div>
+            </div>
+            {{'precio' | translate}} : {{edicion.precio}}
           </div>
-        </select>
-        <input class="buttoncolor" type="submit" value="{{'addcarrito' | translate}}"/>
-      </form>
-    </div>
+        </option>
+      </select>
+      <input class="buttoncolor" type="submit" value="{{'addcarrito' | translate}}"/>
+    </form>
+
   </div>
+
   <div *ngIf="dataService.usuarioLoggeado">
     <div class="comentario">
       <form [formGroup]="controlAddComentario" (ngSubmit)="OnSubmitComentario()">
@@ -79,3 +78,4 @@
     </div>
   </div>
 </section>
+

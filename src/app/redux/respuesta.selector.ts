@@ -13,3 +13,7 @@ export const juegoDetail = createFeatureSelector<State>(respuestaReducer);
 
 export const juegoDetailSuccess = createSelector(juegoDetail, (state: State) => state.juegoDetail);
 
+export const bibliotecaDatos = createFeatureSelector<State>(respuestaReducer);
+
+export const bibliotecaDatosSuccess = createSelector(bibliotecaDatos,(state: State) => state.juegosBiblioteca);
+

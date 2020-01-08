@@ -1,0 +1,63 @@
+<section class="biblioteca" *ngIf="biblioteca$ | async as biblioteca">
+  <h1>{{'biblioteca' | translate}}</h1>
+  <div *ngIf="biblioteca.JuegosBiblioteca.length !== 0">
+    <div *ngFor="let juego of biblioteca.JuegosBiblioteca | paginate: { itemsPerPage: 3, currentPage: page} ">
+      <div class="divjuegobiblioteca">
+        <a class="a2" [routerLink]="['detalle/'+juego.idJuego]">
+          <img src="../../../../assets/img/icojuego/{{juego.idJuego}}.jpg" alt="{{juego.nombre}}"/>
+        </a>
+      </div>
+      <div class="divbiblioteca">
+        <p>{{juego.nombre}}</p>
+        <a (click)="delete(juego.idJuego)">
+          <button>{{'eliminar' | translate}}</button>
+        </a>
+
+       <div class="addCarrito" *ngIf="juego.ediciones">
+            <select>
+              <option *ngFor="let edicion of juego.ediciones" value="{{edicion.id}}">
+                <div *ngIf="datosPrecarga$ | async as datosPrecarga">
+                  {{'formato' | translate}}
+                  <div *ngFor="let formato of datosPrecarga.DatosPrecargaJuego.Formato">
+                    <div *ngIf="formato.idFormato === edicion.idFormato">{{formato.nombre}}</div>
+                  </div>
+                  {{'tipoedicion' | translate}}
+                  <div *ngFor="let tipoEdicion of datosPrecarga.DatosPrecargaJuego.TipoEdiciones">
+                    <div *ngIf="tipoEdicion.idTipoEdicion === edicion.idTipoEdicion">{{tipoEdicion.nombre}}</div>
+                  </div>
+                  {{'precio' | translate}} : {{edicion.precio}}
+                </div>
+              </option>
+            </select>
+            <input class="buttoncolor" type="submit" value="{{'addcarrito' | translate}}"/>
+        </div>
+
+        <div class="puntuacionVotar">
+          <p>{{'cambiarpuntuacion' | translate}}</p>
+            <select name="puntuacion">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <input type="submit" class="buttoncolor" value ="{{'votar' | translate}}"/>
+        </div>
+        <div>
+          {{'tupuntuacion' | translate}}
+          <div *ngFor="let item of biblioteca.Puntuacion">
+            <div *ngIf="item.idJuego === juego.idJuego">{{item.puntuacion}}</div>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</section>

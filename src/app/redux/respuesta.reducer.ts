@@ -9,9 +9,10 @@ export interface State{
   respuesta?: Respuesta;
   juegoSearch?: Juego[];
   juegoDetail?: Respuesta;
+  juegosBiblioteca?: Respuesta;
 }
 
-export const initialState: State = {respuesta: undefined, juegoSearch: undefined,juegoDetail:undefined};
+export const initialState: State = {respuesta: undefined, juegoSearch: undefined,juegoDetail:undefined, juegosBiblioteca:undefined};
 
 const reducer = createReducer(
   initialState,
@@ -34,6 +35,13 @@ const reducer = createReducer(
     return {
       ...state,
       juegoDetail:  payload.success
+    }
+  }),
+  on(RespuestaActions.bibliotecaRespuesta, state => state),
+  on(RespuestaActions.bibliotecaRespuestaSuccess, (state, payload) =>{
+    return {
+      ...state,
+      juegosBiblioteca: payload.success
     }
   })
 );

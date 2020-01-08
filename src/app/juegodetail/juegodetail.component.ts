@@ -15,29 +15,32 @@ import {RespuestaService} from "../redux/respuesta.service";
   styleUrls: ['./juegodetail.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JuegodetailComponent implements OnInit {
+export class JuegodetailComponent implements OnInit{
   page = 1;
   entrada = new Entrada();
-  controlAddCarrito: FormGroup;
-  controlAddComentario: FormGroup;
-
   juego$ = this.respuestaService.juegoDetail();
   datosPrecarga$ = this.respuestaService.inicioDatos();
+  controlAddCarrito: FormGroup;
+  controlAddComentario: FormGroup;
 
   constructor(
     private respuestaService: RespuestaService,
     private router: ActivatedRoute,
     private dataService: DataService,
     private store: Store<State>
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.router.params.subscribe(params => {this.entrada.IdJuego = params["id"]});
     this.dataService.entrada = this.entrada;
     this.store.dispatch(RespuestaActions.juegoDetail());
-  }
+    this.store.dispatch(RespuestaActions.inicioDatosRespuesta());
 
-  ngOnInit() {
     this.controlAddComentario = new FormGroup({
       comentarios: new FormControl()
+    });
+    this.controlAddCarrito = new FormGroup({
+      edicion: new FormControl()
     })
   }
 
@@ -54,4 +57,5 @@ export class JuegodetailComponent implements OnInit {
   OnSubmitComentario() {
 
   }
+
 }

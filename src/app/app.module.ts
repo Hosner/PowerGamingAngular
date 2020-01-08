@@ -42,6 +42,7 @@ import {LoadingModule} from "./shared/loading/loading.module";
 import {CookieService} from "ngx-cookie-service";
 import {ConfiguracionModule} from "./configuracion/configuracion.module";
 import {ConfiguracionComponent} from "./configuracion/configuracion.component";
+import {BibliotecaComponent} from "./biblioteca/biblioteca.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -58,7 +59,8 @@ export function createTranslateLoader(http: HttpClient) {
     ContactoComponent,
     BuscadorPageComponent,
     JuegodetailComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    BibliotecaComponent
   ],
   imports: [
     BrowserModule,

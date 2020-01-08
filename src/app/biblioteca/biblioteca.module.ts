@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {NgxPaginationModule} from "ngx-pagination";
 import {TranslateModule} from "@ngx-translate/core";
-import {ReactiveFormsModule} from "@angular/forms";
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    NgxPaginationModule,
     TranslateModule,
-    ReactiveFormsModule,
+    NgbPaginationModule
   ]
 })
-export class JuegodetailModule { }
+export class BibliotecaModule { }
