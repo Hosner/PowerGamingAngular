@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Entrada} from "../shared/model/entrada";
 import {DataService} from "../shared/servicios/data.service";
@@ -8,18 +8,24 @@ import {Store} from "@ngrx/store";
 import {State} from "../redux/respuesta.reducer";
 import * as RespuestaActions from '../redux/respuesta.actions';
 import {RespuestaService} from "../redux/respuesta.service";
+import {Subscription} from "rxjs";
+import {NetworkService} from "../shared/servicios/network.service";
+import {ModalService} from "../shared/servicios/modal.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-juegodetail',
   templateUrl: './juegodetail.component.html',
   styleUrls: ['./juegodetail.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JuegodetailComponent implements OnInit{
+export class JuegodetailComponent implements OnInit,OnDestroy{
   page = 1;
   entrada = new Entrada();
   juego$ = this.respuestaService.juegoDetail();
   datosPrecarga$ = this.respuestaService.inicioDatos();
+
+  private subscriptions: Subscription = new Subscription();
+
   controlAddCarrito: FormGroup;
   controlAddComentario: FormGroup;
 
@@ -27,7 +33,10 @@ export class JuegodetailComponent implements OnInit{
     private respuestaService: RespuestaService,
     private router: ActivatedRoute,
     private dataService: DataService,
-    private store: Store<State>
+    private store: Store<State>,
+    private networkService: NetworkService,
+    private modalService: ModalService,
+    private translateService:TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -44,10 +53,21 @@ export class JuegodetailComponent implements OnInit{
     })
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
   addJuego(id) {
     let entrada = new Entrada();
-    entrada.usuario.idLogin = this.dataService.usuarioLoggeado.idLogin;
+    entrada.IdLogin = this.dataService.usuarioLoggeado.idLogin;
     entrada.IdJuego = id;
+    this.subscriptions.add(this.networkService.sendRequest("AddJuegoBiblioteca", entrada).subscribe(respuesta => {
+      if (respuesta.Status === "OK") {
+        window.location.reload();
+      } else {
+        this.dataService.menssageModal = this.translateService.instant(respuesta.StatusMsg);
+      }
+    }))
   }
 
   OnSubmitCarrito(ediciones : Edicion[]) {

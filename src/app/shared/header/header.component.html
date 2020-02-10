@@ -4,10 +4,10 @@
   <nav class="nav">
     <ul>
       <li><a [routerLink]="['/inicio']">{{'inicio'| translate}}</a></li>
-      <li *ngIf="!dataService.usuarioLoggeado"><a [routerLink]="['/login']">{{'entrar'|translate}}</a></li>
-      <li *ngIf="dataService.usuarioLoggeado"><a [routerLink]="['/configuracion']">{{'micuenta'|translate}}</a></li>
-      <li *ngIf="dataService.usuarioLoggeado"><a [routerLink]="['/biblioteca']">{{'biblioteca'| translate}}</a></li>
-      <li *ngIf="dataService.usuarioLoggeado"><a (click)="logOut()">{{'salir'|translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado === undefined"><a [routerLink]="['/login']">{{'entrar'|translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado !== undefined"><a [routerLink]="['/configuracion']">{{'micuenta'|translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado !== undefined"><a [routerLink]="['/biblioteca']">{{'biblioteca'| translate}}</a></li>
+      <li *ngIf="dataService.usuarioLoggeado !== undefined"><a (click)="logOut()">{{'salir'|translate}}</a></li>
     </ul>
   </nav>
 

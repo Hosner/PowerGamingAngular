@@ -86,5 +86,10 @@
   "INCORRECT_PASSWORD":"Incorrect Password",
   "obligatorio":"*obligatory",
   "email": "Email",
-  "actualizar": "Update"
+  "actualizar": "Update",
+  "E0": "Hemos tenido un problema, por favor si es un problema grave contacte con nosotros",
+  "E2": "Ha habido un problema en la actualización de los datos, si vuelve ocurrir contacte con nosotros",
+  "E4": "Correo o password incorrectas",
+  "E5": "Error en la creación del usuario, vuelva a intentarlo",
+  "E6": "Login expirado"
 }

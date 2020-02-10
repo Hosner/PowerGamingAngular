@@ -21,8 +21,6 @@ export class DataService {
 
     public usuarioLoggeado: Usuario;
 
-    idLogin: any;
-
     public idiomaWeb: string;
 
     public entrada:Entrada;

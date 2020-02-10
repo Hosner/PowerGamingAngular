@@ -85,6 +85,7 @@ export class BuscadorComponent implements OnInit, OnDestroy {
     if (this.respuestaService.resultadoBuscador()) {
       this.router.navigate(['/buscador-page']);
     }
+    this.dataService.entrada = undefined;
   }
 
   OnclickIdioma(idIdioma: string, $event) {

@@ -8,10 +8,10 @@
         {{juego.nombre}}
       </a>
       <div *ngIf="dataService.usuarioLoggeado">
-        <div *ngIf="juego.existeEnBiblioteca === true">
-          <p class="a">{{'anhadido' | translate}}</p>
+        <div *ngIf="juego.existeEnBiblioteca">
+          <p class="panhadido">{{'anhadido' | translate}}</p>
         </div>
-        <div *ngIf="juego.existeEnBiblioteca === false">
+        <div *ngIf="!juego.existeEnBiblioteca">
           <a class="a">
             <button (click)="addJuego(juego.idJuego)">{{'addBiblioteca' | translate}}</button>
           </a>

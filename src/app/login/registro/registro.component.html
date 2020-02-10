@@ -1,6 +1,6 @@
 <section class="registro">
   <h2>{{'RegistroUsuario' | translate}}</h2>
-  <form [formGroup]="controlRegistro" (click)="Onsubmit()">
+  <form [formGroup]="controlRegistro">
     <label>{{'name' | translate}}*: </label>
     <input type="text" id="nombre" name="nombre" placeholder='nombre' formControlName="nombre" [ngClass]="{ 'is-invalid':submitted && controlRegistro.get('nombre').errors, 'is-valid':submitted && !controlRegistro.get('nombre').errors}">
     <div *ngIf="submitted && controlRegistro.get('nombre').errors" class="invalid-feedback">
@@ -34,6 +34,6 @@
       <div>{{'obligatorio'|translate}}</div>
     </div><br>
 
-    <input class="buttoncolor" type="submit" value="{{'registrarse' | translate}}"/>
+    <input (click)="Onsubmit()" class="buttoncolor" type="submit" value="{{'registrarse' | translate}}"/>
   </form>
 </section>

@@ -33,8 +33,27 @@ export class NetworkService {
      * @param entrada {Entrada} entrada de la peticion
      */
     public sendRequest(metodoPeticion: string, entrada:any): Observable<Respuesta> {
+      if(!this.dataService.usuarioLoggeado){
         return this.httpClient.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
-          {Metodo: metodoPeticion, IdLogin: this.dataService.idLogin, IdiomaWeb: this.dataService.idiomaWeb, Entrada: entrada}, httpOptions);
+          {
+            Metodo: metodoPeticion,
+            IdiomaWeb: this.dataService.idiomaWeb,
+            Entrada: entrada
+          }, httpOptions);
+      }else {
+        return this.httpClient.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
+          {
+            Metodo: metodoPeticion,
+            IdLogin: this.dataService.usuarioLoggeado.idLogin,
+            IdiomaWeb: this.dataService.idiomaWeb,
+            Entrada: entrada
+          }, httpOptions);
+      }
     }
 
+
+    public sendRequestId(): Observable<Respuesta>{
+      return this.httpClient.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
+        {IdLogin: this.dataService.usuarioLoggeado.idLogin, IdiomaWeb: this.dataService.idiomaWeb}, httpOptions);
+    }
 }

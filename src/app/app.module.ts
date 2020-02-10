@@ -16,7 +16,7 @@ import {CommonModule} from '@angular/common';
 import {HeaderModule} from './shared/header/header.module';
 import {FooterModule} from './shared/footer/footer.module';
 import {InicioModule} from './inicio/inicio.module';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 
 import {ReactiveFormsModule} from "@angular/forms";
 import { StoreModule } from '@ngrx/store';
@@ -40,9 +40,10 @@ import {JuegodetailModule} from "./juegodetail/juegodetail.module";
 import {JuegodetailComponent} from "./juegodetail/juegodetail.component";
 import {LoadingModule} from "./shared/loading/loading.module";
 import {CookieService} from "ngx-cookie-service";
-import {ConfiguracionModule} from "./configuracion/configuracion.module";
 import {ConfiguracionComponent} from "./configuracion/configuracion.component";
 import {BibliotecaComponent} from "./biblioteca/biblioteca.component";
+import {BibliotecaModule} from "./biblioteca/biblioteca.module";
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -108,7 +109,8 @@ export function createTranslateLoader(http: HttpClient) {
     EntityDataModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     BuscadorModule,
-    LoadingModule
+    LoadingModule,
+    BibliotecaModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

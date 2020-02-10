@@ -5,6 +5,7 @@ import { InicioDetailComponent } from './inicio-detail/inicio-detail.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {TranslateModule} from "@ngx-translate/core";
 import {RouterModule} from "@angular/router";
+import {DataService} from "../shared/servicios/data.service";
 
 @NgModule({
   declarations: [InicioDetailComponent],
@@ -17,6 +18,7 @@ import {RouterModule} from "@angular/router";
   ],
   exports: [
     InicioDetailComponent
-  ]
+  ],
+  providers:[DataService]
 })
 export class InicioModule { }

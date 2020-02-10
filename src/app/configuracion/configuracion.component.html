@@ -1,6 +1,6 @@
 <section class="micuenta">
   <h2>{{'myaccountmensage' | translate}}</h2>
-  <form [formGroup]="controlMyAccount" (click)="OnSubmit()">
+  <form [formGroup]="controlMyAccount"   >
     <label>{{'name' | translate}}:</label>
     <input type="text" formControlName="nombre" value="{{dataService.usuarioLoggeado.nombre}}" /><br>
     <label>{{'apellido1' | translate}}: </label>
@@ -14,6 +14,6 @@
     <label>{{'nombreuser' | translate}}: </label>
     <input type="text" formControlName="nombreUser" value="{{dataService.usuarioLoggeado.nombreUser}}"/><br>
 
-    <input class="buttoncolor" type="submit" value="{{'actualizar' | translate}}"/>
+    <input (click)="OnSubmit()" class="buttoncolor" type="submit" value="{{'actualizar' | translate}}"/>
   </form>
 </section>

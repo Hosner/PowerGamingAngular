@@ -1,7 +1,7 @@
 
 body{
   box-sizing: border-box;
-  margin: 0%;
+  margin: 0;
   background-color:#fff;
   color:black;
   font-family: 'Oswald', sans-serif;
@@ -28,7 +28,6 @@ input.enlace:hover{
 
 header{
   width:100%;
-  display:inline-block;
   height: 100px;
   background-color: black;
   color: azure;
@@ -157,6 +156,14 @@ section{
   text-decoration:none;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+.panhadido{
+  width:142px;
+  height:22px;
+  text-decoration:none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: darkviolet;
 }
 
 .menudes-contido2 {

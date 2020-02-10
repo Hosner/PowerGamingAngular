@@ -4,7 +4,9 @@ import {NgbModal, NgbModalOptions, NgbModalRef} from "@ng-bootstrap/ng-bootstrap
 /**
  * Servicio de modales
  */
-
+@Injectable({
+  providedIn: 'root'
+})
 export class ModalService {
     /**
      * Opciones por defecto del modal
@@ -23,7 +25,7 @@ export class ModalService {
      * Abrir el modal con la template o componente que se necesite
      * */
     open(template: any, options?: NgbModalOptions): Promise<any> {
-        this.modalRef = this.ngbModal.open(template, options ? options : this.options);
+      this.modalRef = this.ngbModal.open(template, options ? options : this.options);
         return this.modalRef.result;
     }
     /**

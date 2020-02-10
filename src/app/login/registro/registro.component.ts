@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegistroComponent implements OnInit, OnDestroy {
-  public submitted: boolean;
+  public submitted: boolean = false;
   controlRegistro: FormGroup;
   private subscriptions: Subscription = new Subscription();
 
@@ -23,11 +23,11 @@ export class RegistroComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.controlRegistro = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.maxLength(45), Validators.minLength(3)]),
-      apellido1: new FormControl('', [Validators.maxLength(45), Validators.minLength(3)]),
-      apellido2: new FormControl('', [Validators.maxLength(45), Validators.minLength(3)]),
+      apellido1: new FormControl('', [Validators.maxLength(45)]),
+      apellido2: new FormControl('', [Validators.maxLength(45)]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(8), Validators.maxLength(75)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
-      telefono: new FormControl('', [Validators.minLength(9), Validators.maxLength(30)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
+      telefono: new FormControl('', [Validators.maxLength(30)]),
       fechaNacimiento: new FormControl('', [Validators.required]),
       genero: new FormControl('', [Validators.required])
     });

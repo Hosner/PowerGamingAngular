@@ -6,13 +6,14 @@ import {Respuesta} from "../model/respuesta";
 import {HttpClient} from "@angular/common/http";
 import {NetworkService} from "../servicios/network.service";
 import {Entrada} from "../model/entrada";
+import {ModalService} from "../servicios/modal.service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
   respuesta: Respuesta;
@@ -21,10 +22,19 @@ export class HeaderComponent implements OnInit {
               private respuestaService: RespuestaService,
               private router: Router,
               private http: HttpClient,
-              private networkService: NetworkService) { }
+              private networkService: NetworkService,
+              private modalService: ModalService,
+              private translateService: TranslateService) { }
 
   ngOnInit() {
-    console.log(this.dataService);
+    if(JSON.parse(localStorage.getItem("IdSession"))){
+      this.dataService.usuarioLoggeado = JSON.parse(localStorage.getItem("IdSession"));
+      this.networkService.sendRequestId().subscribe(value => {
+        if(value.Status === "KO" && value.StatusMsg === "E6"){
+          this.dataService.usuarioLoggeado = undefined;
+        }
+      }).unsubscribe();
+    }
   }
 
   logOut() {
@@ -32,13 +42,13 @@ export class HeaderComponent implements OnInit {
     entrada.IdLogin = this.dataService.usuarioLoggeado.idLogin;
     this.networkService.sendRequest("Usuario", entrada).subscribe(value => {
       if(value.Status == "OK") {
-        window.location.reload();
+        this.router.navigate(['/inicio']);
       }else{
+        this.dataService.menssageModal = this.translateService.instant(value.StatusMsg);
 
       }
-    });
-    localStorage.clear();
-    this.dataService.usuarioLoggeado = null;
-    this.dataService.idLogin = null;
+    }).unsubscribe();
+    localStorage.removeItem("IdSession");
+    this.dataService.usuarioLoggeado = undefined;
   }
 }

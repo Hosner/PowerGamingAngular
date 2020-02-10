@@ -29,8 +29,7 @@ export class RespuestaEffects {
           map(respuesta => RespuestaActions.inicioDatosRespuestaSuccess({success: respuesta}))
         )
       )
-    )
-  );
+    )  );
 
   buscadorResultado$ = createEffect(() =>
     this.actions$.pipe(
@@ -39,6 +38,7 @@ export class RespuestaEffects {
         this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
           {
             Metodo: 'Buscador',
+            IdLogin: this.dataService.usuarioLoggeado ? this.dataService.usuarioLoggeado.idLogin : "",
             IdiomaWeb: this.dataService.idiomaWeb,
             Entrada: this.dataService.entrada
           },
@@ -56,7 +56,7 @@ export class RespuestaEffects {
         this.http.post<Respuesta>(`${environment.servers.urlPowerGaming}`,
           {
             Metodo: 'Juego',
-            IdLogin: this.dataService.idLogin,
+            IdLogin: this.dataService.usuarioLoggeado ? this.dataService.usuarioLoggeado.idLogin : "",
             IdiomaWeb: this.dataService.idiomaWeb,
             Entrada: this.dataService.entrada
           },
@@ -74,7 +74,7 @@ export class RespuestaEffects {
       this.http.post<Respuesta>( `${environment.servers.urlPowerGaming}`,
       {
         Metodo: 'Biblioteca',
-        IdLogin: this.dataService.idLogin,
+        IdLogin: this.dataService.usuarioLoggeado.idLogin,
         IdiomaWeb: this.dataService.idiomaWeb
       },
       httpOptions).pipe(

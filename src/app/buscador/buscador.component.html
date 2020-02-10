@@ -1,5 +1,5 @@
 <div id="buscador-form" *ngIf="datosPrecarga$ | async as respuesta ">
-  <form [formGroup]="controlBuscador" (ngSubmit)="OnSubmit()">
+  <form [formGroup]="controlBuscador" >
     <a (mouseover)="ver(1)" (mouseout)="ocultar(1)" class="dropbtn">{{'categoria' | translate}}
       <div id="meumenudes1" class="menu-search">
           <label class="container" *ngFor="let categoria of respuesta.DatosPrecargaJuego.Categorias">{{categoria.nombre}}
@@ -58,7 +58,7 @@
            formControlName="nombre"
            autocomplete="off"/>
 
-    <button class="buttoncolor" type="submit">{{'buscar' | translate}}</button>
+    <button (click)="OnSubmit()" class="buttoncolor" type="submit">{{'buscar' | translate}}</button>
   </form>
 </div>
 
